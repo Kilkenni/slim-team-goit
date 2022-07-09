@@ -1,0 +1,25 @@
+$breakpoints: (
+  "phone": 320px,
+  "tablet": 768px,
+  "desktop": 1280px,
+);
+
+@mixin mediaquery($width, $type: min) {
+  @if map_has_key($breakpoints, $width) {
+    $width: map_get($breakpoints, $width);
+
+    @if $type==max {
+      $width: $width - 1px;
+    }
+
+    @media screen and (#{$type}-width: $width) {
+      @content;
+    }
+  }
+}
+
+@mixin mediaquery-tablet-only {
+  @media screen and (min-width: $tablet) and (max-width: $before-desktop) {
+    @content;
+  }
+}
