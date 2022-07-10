@@ -1,5 +1,7 @@
 @use "./_styles/default";
+@use "./_styles/mixins";
 @use "./_styles/colors";
+@use "./_styles/components/MainPage";
 
 .App {
   text-align: center;
