@@ -10,8 +10,6 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 
 
-// const RegisterPage = lazy(() => import('../pages/RegisterPage'));
-// const LoginPage = lazy(() => import('../pages/LoginPage'));
 
 function App() {
   const dispatch = useDispatch();
@@ -32,11 +30,7 @@ function App() {
         </Route>
       }
     </Routes>  
-    // <>
-    //   <LoginPage />
-    //   <RegisterPage/>
-    // </>
-   
+
     
   );
 }
