@@ -74,7 +74,7 @@ export default function RegisterPage() {
         </label>
 
         <ul className={styles.list}>
-          <li className={styles.item}><button type="button" className={styles.button}>Вхід</button></li>
+          <li className={styles.item}><a href='./login'><button type="button"  className={styles.button}>Вхід</button></a></li>
           <li className={styles.item}><button type="submit" className={styles.button}>Реєстрація</button></li>           
         </ul>       
       </form>
