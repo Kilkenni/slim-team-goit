@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import styles from './LoginPage.module.scss';
 
 
 
@@ -29,12 +30,12 @@ export default function LoginView() {
 
   return (
     <div>
-      <h1 >Login page</h1>
+      <h1 className={styles.title}>Вхід</h1>
 
-      <form onSubmit={handleSubmit}   autoComplete="off">
-        <label >
-          Email
-          <input
+      <form onSubmit={handleSubmit}  className={styles.form} autoComplete="off">
+        <label className={styles.label}>
+          Пошта*
+          <input className={styles.input}
             type="email"
             name="email"
             value={email}
@@ -44,9 +45,9 @@ export default function LoginView() {
           />
         </label>
 
-        <label >
-          Password
-          <input
+        <label className={styles.label}>
+          Пароль*
+          <input className={styles.input}
             type="password"
             name="password"
             value={password}
@@ -55,8 +56,11 @@ export default function LoginView() {
             required
           />
         </label>
-
-        <button type="submit">Log in</button>
+        <ul className={styles.list}>
+          <li className={styles.item}><button type="submit" className={styles.button}>Вхід</button></li>
+          <li className={styles.item}><button type="button" className={styles.button}>Реєстрація</button></li>           
+        </ul>
+        
       </form>
     </div>
   );

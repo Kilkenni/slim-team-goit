@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import styles from './RegisterPage.module.scss';
+
 
 
 export default function RegisterPage() {
@@ -32,12 +34,12 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <h1 >Registration page</h1>
+      <h1 className={styles.title}>Реєстрація</h1>
 
-      <form onSubmit={handleSubmit}   autoComplete="off">
-        <label >
-          Name
-          <input
+      <form onSubmit={handleSubmit}  className={styles.form} autoComplete="off">
+        <label className={styles.label}>
+          Ім'я*
+          <input className={styles.input}
             type="text"
             name="name"
             value={name}
@@ -47,9 +49,9 @@ export default function RegisterPage() {
           />
         </label>
 
-        <label >
-          Email
-          <input
+        <label className={styles.label}>
+          Пошта*
+          <input className={styles.input}
             type="email"
             name="email"
             value={email}
@@ -59,9 +61,9 @@ export default function RegisterPage() {
           />
         </label>
 
-        <label >
-          Password
-          <input
+        <label className={styles.label}>
+          Пароль*
+          <input className={styles.input}
             type="password"
             name="password"
             value={password}
@@ -71,7 +73,10 @@ export default function RegisterPage() {
           />
         </label>
 
-        <button type="submit" >Register</button>       
+        <ul className={styles.list}>
+          <li className={styles.item}><button type="button" className={styles.button}>Вхід</button></li>
+          <li className={styles.item}><button type="submit" className={styles.button}>Реєстрація</button></li>           
+        </ul>       
       </form>
     </div>
   );
