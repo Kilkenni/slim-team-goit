@@ -1,3 +1,4 @@
+import MainPage from './MainPage'
 import { Routes, Route } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,14 +21,17 @@ function App() {
   }, [dispatch]);
   
   return (
+      
+
     <Routes>
       {!isFetchingCurrentUser &&
         <Route path="/" element={<Layout />}>
         
         <Route path="register" element={<PublicRoute ><RegisterPage /></PublicRoute>} />
         <Route path="login" element={<PublicRoute ><LoginPage /></PublicRoute>} />       
-        
+        {/* <Route path="" element={<PublicRoute ><MainPage></PublicRoute>}/>     */}
         </Route>
+        
       }
     </Routes>  
 
