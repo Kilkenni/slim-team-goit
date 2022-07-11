@@ -29,7 +29,7 @@ function App() {
         
         <Route path="register" element={<PublicRoute ><RegisterPage /></PublicRoute>} />
         <Route path="login" element={<PublicRoute ><LoginPage /></PublicRoute>} />       
-        {/* <Route path="" element={<PublicRoute ><MainPage></PublicRoute>}/>     */}
+        <Route index element={<PublicRoute ><MainPage/></PublicRoute>}/>    
         </Route>
         
       }
