@@ -9,7 +9,7 @@ import PublicRoute from './PublicRoute';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 
-
+import Modal from "./Modal"
 
 function App() {
   const dispatch = useDispatch();
@@ -19,8 +19,8 @@ function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
   
-  return (
-    <Routes>
+  return (<>
+     <Routes>
       {!isFetchingCurrentUser &&
         <Route path="/" element={<Layout />}>
         
@@ -29,9 +29,11 @@ function App() {
         
         </Route>
       }
-    </Routes>  
-
-    
+    </Routes>
+    <Modal>
+      <h1>Hello</h1>
+    </Modal>
+  </>    
   );
 }
 

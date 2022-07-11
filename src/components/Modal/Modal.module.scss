@@ -1,0 +1,15 @@
+@use "../_styles/colors";
+@use "../_styles/mixins" as mixins;
+
+
+.modal {
+  width: 300px;
+  height: 150px;
+  background-color: var(--accent-main);
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mixins.mediaquery("desktop", min) {
+    width: 600px;
+  }
+}
