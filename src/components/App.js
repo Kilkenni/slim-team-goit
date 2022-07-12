@@ -22,6 +22,7 @@ function App() {
     <Routes>
       {!isFetchingCurrentUser && (
         <Route path="/" element={<Layout />}>
+         
           <Route
             path="register"
             element={
@@ -38,7 +39,14 @@ function App() {
               </PublicRoute>
             }
           />
-          {/* <Route path="" element={<PublicRoute ><MainPage></PublicRoute>}/>     */}
+          <Route 
+            path="" 
+            element={
+              <PublicRoute >
+                <MainPage/>
+              </PublicRoute>
+            }
+          />    
         </Route>
       )}
     </Routes>
