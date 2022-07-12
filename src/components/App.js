@@ -18,11 +18,16 @@ function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   return (
     <Routes>
       {!isFetchingCurrentUser && (
         <Route path="/" element={<Layout />}>
-          <Route path="" element={<PrivateRoute ><DiaryPageView/></PrivateRoute>} />            
+          <Route
+            path=""
+            element={isLoggedIn ? <DiaryPageView /> : <MainPage/>}
+          />            
           <Route
             path="register"
             element={
@@ -39,14 +44,6 @@ function App() {
               </PublicRoute>
             }
           />
-          <Route 
-            path="" 
-            element={
-              <PublicRoute >
-                <MainPage/>
-              </PublicRoute>
-            }
-          />    
         </Route>
       )
       }
