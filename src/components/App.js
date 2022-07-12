@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import CalculatorPage from "../pages/CalculatorPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
               </PublicRoute>
             }
           />
+          <Route path="calculator" element={<PrivateRoute> <CalculatorPage /></PrivateRoute>}/>
         </Route>
       )
       }
