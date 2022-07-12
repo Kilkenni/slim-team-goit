@@ -1,0 +1,200 @@
+.main {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main__content {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 30px;
+  position: relative;
+  padding: 30px 20px 100px;
+  @media screen and (min-width: 768px) {
+    padding: 150px 30px 0;
+    z-index: 999;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 600px;
+    padding: 300px 15px 110px;
+  }
+}
+
+.main__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--text-contrast);
+}
+
+.main__img {
+  @media screen and (min-width: 768px) {
+    position: absolute;
+    z-index: 1;
+  }
+  @media screen and (min-width: 1280px) {
+  }
+  &.banana {
+    @media screen and (min-width: 768px) {
+      right: 0;
+      top: 220px;
+    }
+    @media screen and (min-width: 1280px) {
+      top: 0;
+      cursor: pointer;
+    }
+  }
+  &.leaves {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+    @media screen and (min-width: 1280px) {
+      display: block;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &.leavesTable {
+    @media screen and (min-width: 768px) {
+      left: 0;
+      top: -20px;
+    }
+    @media screen and (min-width: 1280px) {
+      display: none;
+    }
+  }
+  &.strawberry {
+    @media screen and (min-width: 768px) {
+      top: 0;
+      right: 0;
+    }
+    @media screen and (min-width: 1280px) {
+      top: auto;
+      bottom: 0;
+    }
+  }
+  &.mainVector {
+    @media screen and (min-width: 768px) {
+      right: -30px;
+      top: 0;
+      z-index: 0;
+    }
+    @media screen and (min-width: 1280px) {
+      top: auto;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &--wrapper {
+    display: none;
+    overflow: hidden;
+    @media screen and (min-width: 768px) {
+      display: block;
+      height: 509px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    @media screen and (min-width: 1280px) {
+      position: absolute;
+      top: 0;
+    }
+  }
+}
+
+#banana{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 500px;
+  height: 500px;
+  
+&:before{
+  content: "";
+  position: absolute;
+  right: -100%;
+  width: 500px;
+  height: 500px;
+  background-image: url("../../MainPage/images/kitchen-table.jpeg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transition: all 1s;
+}
+&:after{
+  content: "";
+  position: absolute;
+  right: -100%;
+  width: 500px;
+  height: 500px;
+  // background-image: url("../../MainPage/images/kitchen-table.jpeg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  transition: all .6s;
+}
+  &:hover:before {
+    @media screen and (min-width: 1280px) {
+      transform: translateX(-80%);
+    }
+  }
+}
+
+
+.leaf {
+  position: absolute;
+  background-size: 100%;
+  z-index: 5;
+}
+
+.leaf-first {
+  right: 5vw;
+  width: 25px;
+  height: 45px;
+  background: url("../../MainPage/images/leaf-1.png") no-repeat;
+  offset-path: path("M0,0 C40,160 60,160 100,0");
+  offset-rotate: 200deg;
+  animation: catalogAnimation 15s infinite alternate ease-in-out;
+}
+
+.leaf-second {
+  top: 15px;
+  right: 50vw;
+  width: 56px;
+  height: 70px;
+  background: url("../../MainPage/images/leaf-2.png") no-repeat;
+  offset-path: path("M0,0 C40,160 60,160 100,0");
+  offset-rotate: 270deg;
+  animation: catalogAnimation 22s infinite alternate ease-in-out;
+}
+
+.leaf-third {
+  top: 650px;
+  right: 30vw;
+  width: 80px;
+  height: 118px;
+  background: url("../../MainPage/images/leaf-3.png") no-repeat;
+  offset-path: path("M0,0 C40,160 160,160 100,0");
+  offset-rotate: 0deg;
+  animation: catalogAnimation 35s infinite alternate ease-in-out;
+}
+
+.leaf-fourth {
+  top: 535px;
+  right: 88vw;
+  width: 56px;
+  height: 70px;
+  background: url("../../MainPage/images/leaf-4.png") no-repeat;
+  offset-path: path("M0,0 C70,120 50,100 200,0");
+  offset-rotate: 248deg;
+  animation: catalogAnimation 30s infinite alternate ease-in-out;
+}
+
+@keyframes catalogAnimation {
+  0% {
+    offset-distance: 0;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
