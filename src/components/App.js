@@ -22,11 +22,31 @@ function App() {
     <Routes>
       {!isFetchingCurrentUser && (
         <Route path="/" element={<Layout />}>
-      
-        <Route path="register" element={<PublicRoute ><RegisterPage /></PublicRoute>} />
-        <Route path="login" element={<PublicRoute ><LoginPage /></PublicRoute>} />
-        <Route path="" element={<PrivateRoute ><DiaryPageView/></PrivateRoute>} />       
-        {/* <Route path="" element={<PublicRoute ><MainPage></PublicRoute>}/>     */}
+          <Route path="" element={<PrivateRoute ><DiaryPageView/></PrivateRoute>} />            
+          <Route
+            path="register"
+            element={
+              <PublicRoute>
+                <RegisterPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route 
+            path="" 
+            element={
+              <PublicRoute >
+                <MainPage/>
+              </PublicRoute>
+            }
+          />    
         </Route>
       )
       }
