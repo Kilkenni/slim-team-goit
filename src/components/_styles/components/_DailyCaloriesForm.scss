@@ -1,3 +1,5 @@
+@use '../placeholders';
+
 .calculate__form {
   display: flex;
   flex-direction: column;
@@ -11,10 +13,7 @@
 .calculate__field {
   width: 100%;
   padding: 8px 0;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
+  @extend %fontCurrent;
   color: var(--text-normal);
   border: none;
   border-bottom: 1px solid var(--form-input);
@@ -41,19 +40,13 @@
 }
 
 #blood-group {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
+  @extend %fontSecond;
   color: var(--text-normal);
 }
 .radio {
   display: flex;
   grid-column-gap: 25px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  letter-spacing: 0.04em;
+  @extend %fontSecond;
   color: var(--text-normal);
 
   & label {
@@ -62,9 +55,7 @@
     padding-left: 25px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 14px;
-    line-height: 17px;
-    letter-spacing: 0.04em;
+    @extend %fontCurrent;
     color: var(--text-normal);
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -88,7 +79,7 @@
       border: 1px solid var(--form-input);
       transition: all 0.3s;
       &:after {
-        content: "";
+        content: '';
         position: absolute;
         display: none;
       }
@@ -117,7 +108,6 @@ label input:checked ~ .checkmark {
   }
 }
 
-
 .subtitle-error {
   position: absolute;
   color: red;
@@ -126,9 +116,8 @@ label input:checked ~ .checkmark {
 }
 
 .input-error {
-    box-sizing: border-box;
+  box-sizing: border-box;
   padding: 8px 0;
   width: 100%;
   border-color: red;
 }
-
