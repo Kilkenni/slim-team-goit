@@ -1,0 +1,10 @@
+@use "../_styles/colors";
+@use "../_styles/mixins" as mixins;
+@use "../_styles/default";
+
+.container {
+    @include mixins.mediaquery ("desktop", min) {
+        display: flex;
+        justify-content: space-between;
+    }
+}
