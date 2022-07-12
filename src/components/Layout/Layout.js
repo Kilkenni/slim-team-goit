@@ -1,14 +1,15 @@
-import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
-
-
+import { Outlet } from "react-router-dom";
+import { Suspense } from "react";
+import styles from "./Layout.module.scss";
+import Header from "../Header";
 
 function Layout() {
   return (
-    <div >           
-        <Suspense >
-          <Outlet />
-        </Suspense>          
+    <div className={styles.container}>
+      <Header />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
