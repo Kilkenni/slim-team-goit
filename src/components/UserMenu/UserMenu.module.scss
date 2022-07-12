@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.name {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 10px 8px 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  color: #212121;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  border-left: #9b9faa solid 2px;
+  padding: 8px 10px 8px 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  color: #9b9faa;
+}
