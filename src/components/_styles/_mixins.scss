@@ -4,6 +4,13 @@ $breakpoints: (
   "desktop": 1280px,
 );
 
+//Дублювальні CSS-змінні для доступу до брейкпойнтів через JS
+:root {
+  --breakpoint-phone: #{map_get($breakpoints, "phone")};
+  --breakpoint-tablet: #{map_get($breakpoints, "tablet")};
+  --breakpoint-desktop: #{map_get($breakpoints, "desktop")};
+}
+
 @mixin mediaquery($width, $type: min) {
   @if map_has_key($breakpoints, $width) {
     $width: map_get($breakpoints, $width);
