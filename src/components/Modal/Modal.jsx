@@ -8,6 +8,11 @@ import { useEffect } from "react";
 
 const modalRoot = document.querySelector("#modal-root");
 
+/**
+ * 
+ * @param {!function} onClose - функція, яка вимикає модальне вікно
+ * @returns Модальне вікно з контентом, переданим як діти. В мобільній версії автоматично включає в себе Header.
+ */
 function Modal({ onClose, children, ...otherProps }) {
   const tabletSize = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-tablet");
   const isMobile = useMediaQuery(`(max-width: ${tabletSize})`);
@@ -48,7 +53,7 @@ function Modal({ onClose, children, ...otherProps }) {
           </button>
         </div>
         <div className={styles.contentBlock}>
-          {children};
+          {children}
         </div>   
       </div> 
     </div>
