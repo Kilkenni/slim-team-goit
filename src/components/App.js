@@ -1,4 +1,3 @@
-
 import DiaryPageView from "../pages/DiaryPage/DiaryPageView";
 import MainPage from './MainPage'
 import { Routes, Route } from 'react-router-dom';
@@ -49,9 +48,10 @@ function App() {
           />
           <Route path="calculator" element={<PrivateRoute> <CalculatorPage /></PrivateRoute>}/>
         </Route>
+      )
       }
-    </Routes>   
-  );
+    </Routes>  
+ );
 }
 
 export default App;
