@@ -1,0 +1,124 @@
+@use "../_styles/colors";
+@use "../_styles/mixins" as mixins;
+@use "../_styles/default";
+@use "../_styles/fonts";
+
+.block {
+  display: none;
+  @include mixins.mediaquery ("tablet", min) {
+    display: block;
+    margin-top: 49px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include mixins.mediaquery ("tablet", min) {
+    flex-direction: row;
+  }
+} 
+
+.name {
+  border-bottom: 1px solid var(--form-input);
+  margin-bottom: 32px;
+  @include mixins.mediaquery ("tablet", min) {
+    width: 240px;
+    margin-right: 22px;
+    margin-bottom: 0;
+  }
+}
+.gram {
+  border-bottom: 1px solid var(--form-input);
+  margin-bottom: 60px;
+  @include mixins.mediaquery ("tablet", min) {
+    width: 106px;
+    margin-right: 87px;
+    margin-bottom: 0;
+  }
+  @include mixins.mediaquery ("desktop", min) {
+    margin-right: 60px;
+  }
+}
+.inputName {
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: var(--text-normal);
+
+  border: none;
+  background-color: transparent;
+  padding: 8px 0;    
+}
+.inputGram {
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: var(--text-normal);
+
+  border: none;
+  background-color: transparent;
+  padding: 8px 0;   
+  @include mixins.mediaquery ("tablet", min) {
+    width: 106px; 
+    text-align: end;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: var(--background); 
+  width: 176px;
+  padding: 13px 46px;
+  background: var(--accent-main);
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;  
+  @include mixins.mediaquery ("tablet", min) {
+    align-items: center;
+    width: 48px;
+    height: 48px; 
+    border-radius: 50%;
+    padding: 0 0 2px 0;
+  }  
+}
+
+.button:hover {
+  background-color: var(--background);
+  color: var(--accent-main);
+  border: 0.5px solid var(--accent-main);
+  margin: -1px;
+  transition: all 250ms linear;
+  @include mixins.mediaquery ("tablet", min) {
+    margin: 0;
+  }
+}
+
+.add {
+  @include mixins.mediaquery ("tablet", min) {
+    display: none;
+  }
+}
+
+.plus {
+  display: none;
+  @include mixins.mediaquery ("tablet", min) {
+    display: block;
+  }
+}

@@ -1,0 +1,67 @@
+@use "../_styles/colors";
+@use "../_styles/mixins" as mixins;
+@use "../_styles/default";
+@use "../_styles/fonts";
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  margin-bottom: 20px;
+  @include mixins.mediaquery ("tablet", min) {
+    margin-top: 60px;
+  }
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.text {
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.04em;
+  color: var(--text-contrast);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--form-input);
+  @include mixins.mediaquery ("tablet", min) {
+    width: 106px;
+    text-align: end;
+  }
+  @include mixins.mediaquery ("desktop", min) {
+    margin-left: 40px;
+  }
+}
+
+.text:first-child {
+  width: 100px;
+  @include mixins.mediaquery ("tablet", min) {
+    width: 240px;
+    text-align: start;
+  }
+  @include mixins.mediaquery ("desktop", min) {
+    margin-left: 0;
+  }
+}
+
+.size {
+  margin-left: 3px;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  color: var(--text-normal);
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus {
+  color: #212121;
+
+  transition: all 250ms linear;
+}
