@@ -1,0 +1,34 @@
+@use "../_styles/mixins" as mixins;
+.logo {
+  display: flex;
+  position: relative;
+@media screen and (min-width: 1280px){
+    min-width: 180px;
+    padding-bottom: 10px;
+}
+  
+  }
+.logo__img {
+  width: 47px;
+  height: 44px;
+  margin-right: 10px;
+  @media screen and (min-width: 1280px) {
+    width: 70px;
+    height: 66px;
+  }
+}
+.logo__title {
+  display: none;
+  font-size: 20px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  @media screen and (min-width: 1280px) {
+    position: absolute;
+    bottom: 10px;
+    left: 55px;
+  }
+}
+

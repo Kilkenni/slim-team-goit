@@ -1,0 +1,93 @@
+@use "../_styles/colors";
+@use "../_styles/mixins" as mixins;
+@use "../_styles/default";
+
+
+.container {
+    height: 100vh;
+    background-color: var(--background-shapes);
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-bottom: 84px;
+    
+@include mixins.mediaquery ("tablet", min) {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px 32px 80px 32px;
+    background-image: url('../../images/Diary-tablet.png');
+    background-repeat: no-repeat;
+    background-position: bottom 0px right 0px;
+    background-size: 428px, 602px;
+} 
+            
+@include mixins.mediaquery ("desktop", min) {
+    
+    display: block;
+    width: 517px;
+    padding: 140px 123px 166px 106px;   
+    background-image: url('../../images/Diary-desktop.png');
+    background-repeat: no-repeat;
+    background-position: bottom 0px right 0px;
+    background-size: 428px, 602px;
+                        }
+}
+
+.summery {
+    @include mixins.mediaquery ("tablet", min) {
+        width: 266px;
+    } 
+}
+
+.norecommended{
+    @include mixins.mediaquery ("tablet", min) {
+        width: 400px;
+    }
+}
+
+.header{
+    margin: 0px 0px 20px 0px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1.2;
+        letter-spacing: 0.04em;
+        @include mixins.mediaquery ("tablet", min) {
+            margin: 0px 0px 40px 0px;
+        }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    @include mixins.mediaquery ("desktop", min) {
+        margin-bottom: 60px;
+    }
+}
+
+.text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: var(--text-normal);
+    &:not(:last-child) {
+            margin: 0px 0px 10px 0px;
+        }
+}
+
+.last__text {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: var(--text-normal);
+}
+
+.item{
+    display: flex;
+    justify-content: space-between;
+}
+

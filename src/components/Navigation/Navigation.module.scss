@@ -1,0 +1,30 @@
+.navigation{
+  display: none;
+  @media screen and (min-width: 1280px){
+    display: flex;
+    border-left: #9B9FAA solid 2px;
+  }
+}
+
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 0px 8px 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #212121;
+}
+
+.active {
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px 0px 8px 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #9B9FAA;
+}

@@ -1,0 +1,54 @@
+@use '../placeholders';
+
+//current style button
+.btn {
+  width: fit-content;
+  min-width: 210px;
+  margin: 0 auto;
+  padding: 15px 25px;
+  border: none;
+  color: var(--background);
+  border: 1px solid var(--accent-main);
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  border-radius: 30px;
+  @extend %fontCurrent;
+  text-align: center;
+  cursor: pointer;
+  background: var(--accent-main);
+  opacity: 1;
+}
+
+//second style button revers
+.btn-second {
+  color: var(--accent-main);
+  background: var(--background);
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  &:hover {
+    color: var(--background);
+    background: var(--accent-main);
+    border: 1px solid var(--accent-main);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  }
+}
+
+// style button in form 
+button[type='submit'] {
+  @extend .btn;
+  @media screen and (min-width: 768px) {
+    margin: 0;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-left: auto;
+  }
+  &.disabled-btn {
+    cursor: not-allowed;
+    background: var(--accent-main);
+    opacity: 0.6;
+  }
+  &:hover:enabled {
+    box-sizing: border-box;
+    color: var(--accent-main);
+    background: var(--background);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  }
+}

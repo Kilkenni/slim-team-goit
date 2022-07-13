@@ -1,0 +1,123 @@
+@use '../placeholders';
+
+.calculate__form {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 25px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    grid-column-gap: 30px;
+  }
+}
+.calculate__field {
+  width: 100%;
+  padding: 8px 0;
+  @extend %fontCurrent;
+  color: var(--text-normal);
+  border: none;
+  border-bottom: 1px solid var(--form-input);
+  &:focus-visible {
+    outline: none;
+    border-color: var(--accent-main);
+  }
+}
+
+.field__wrapper {
+  position: relative;
+  @media screen and (min-width: 768px) {
+    width: calc((100% - 30px) / 2);
+  }
+}
+
+.radio__wrapper {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 10px;
+  @media screen and (min-width: 768px) {
+    width: 100%;
+  }
+}
+
+#blood-group {
+  @extend %fontSecond;
+  color: var(--text-normal);
+}
+.radio {
+  display: flex;
+  grid-column-gap: 25px;
+  @extend %fontSecond;
+  color: var(--text-normal);
+
+  & label {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    @extend %fontCurrent;
+    color: var(--text-normal);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all 0.3s;
+    &:hover {
+      color: var(--accent-main);
+      & .checkmark {
+        border-color: var(--accent-main);
+      }
+    }
+    & .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: var(--background);
+      border-radius: 50%;
+      border: 1px solid var(--form-input);
+      transition: all 0.3s;
+      &:after {
+        content: '';
+        position: absolute;
+        display: none;
+      }
+    }
+    & .radioItem {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+  }
+}
+
+label input:checked ~ .checkmark {
+  border-color: var(--accent-main);
+  &:after {
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--accent-main);
+  }
+}
+
+.subtitle-error {
+  position: absolute;
+  color: red;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.input-error {
+  box-sizing: border-box;
+  padding: 8px 0;
+  width: 100%;
+  border-color: red;
+}
