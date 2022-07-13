@@ -65,12 +65,12 @@ export default function LoginView() {
         </label>
         <ul className={styles.list}>
             <li className={styles.item}>
-              <button type="submit" className={styles.button}>Вхід</button>
+              <button type="submit" className={styles.btn}>Вхід</button>
               {/* <Button type="submit" className={''} title={'Вхід'}/> */}
             </li>
             <li className={styles.item}>
               <a href='./register'>
-                <button type="button" className={styles.button}>Реєстрація</button>
+                <button type="button" className={styles.btn__second}>Реєстрація</button>
                 {/* <Button type="button" className={''} title={'Реєстрація'}/> */}
               </a>
             </li>           
