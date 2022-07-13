@@ -1,0 +1,13 @@
+%fontCurrent {
+  font-family: 'Verdana', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.21em;
+  letter-spacing: 0.04em;
+}
+
+%fontSecond {
+  @extend %fontCurrent;
+  font-weight: 400;
+}

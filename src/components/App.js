@@ -1,3 +1,4 @@
+
 import DiaryPageView from "../pages/DiaryPage/DiaryPageView";
 import MainPage from './MainPage'
 import { Routes, Route } from 'react-router-dom';
@@ -8,10 +9,9 @@ import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-
-import Modal from "./Modal"
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import CalculatorPage from "../pages/CalculatorPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -20,12 +20,17 @@ function App() {
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
-  
-  return (<>
-     <Routes>
-      {!isFetchingCurrentUser &&
+
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
+  return (
+    <Routes>
+      {!isFetchingCurrentUser && (
         <Route path="/" element={<Layout />}>
-          <Route path="" element={<PrivateRoute ><DiaryPageView /></PrivateRoute>} />
+          <Route
+            path=""
+            element={isLoggedIn ? <DiaryPageView /> : <MainPage/>}
+          />            
           <Route
             path="register"
             element={
@@ -42,21 +47,10 @@ function App() {
               </PublicRoute>
             }
           />
-          <Route
-            path=""
-            element={
-              <PublicRoute >
-                <MainPage />
-              </PublicRoute>
-            }
-          />
+          <Route path="calculator" element={<PrivateRoute> <CalculatorPage /></PrivateRoute>}/>
         </Route>
       }
-    </Routes>
-    <Modal>
-      <h1>Hello</h1>
-    </Modal>
-  </>    
+    </Routes>   
   );
 }
 
