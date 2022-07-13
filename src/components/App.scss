@@ -1,45 +1,47 @@
 @use "./_styles/default";
+@use "./_styles/fonts";
 @use "./_styles/mixins";
+@use "./_styles/placeholders";
 @use "./_styles/colors";
 @use "./_styles/components/MainPage";
 @use "./_styles/components/DailyCaloriesForm";
 @use "./_styles/components/Button";
 
-.App {
-  text-align: center;
-}
+// .App {
+//   text-align: center;
+// }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+// .App-logo {
+//   height: 40vmin;
+//   pointer-events: none;
+// }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+// @media (prefers-reduced-motion: no-preference) {
+//   .App-logo {
+//     animation: App-logo-spin infinite 20s linear;
+//   }
+// }
 
-.App-header {
-  background-color: var(--accent-secondary);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--accent-main);
-}
+// .App-header {
+//   background-color: var(--accent-secondary);
+//   min-height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: calc(10px + 2vmin);
+//   color: var(--accent-main);
+// }
 
-.App-link {
-  color: var(--text-contrast);
-}
+// .App-link {
+//   color: var(--text-contrast);
+// }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+// @keyframes App-logo-spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
