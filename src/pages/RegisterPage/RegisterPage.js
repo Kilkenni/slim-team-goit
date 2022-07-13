@@ -36,8 +36,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h1 className={styles.title}>Реєстрація</h1>
+    <div className={styles.container}>
+      <div className={styles.title__container}>
+        <h1 className={styles.title}>Реєстрація</h1>
+      </div>      
       
       <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={schema}>
         <Form  className={styles.form} autoComplete="off">

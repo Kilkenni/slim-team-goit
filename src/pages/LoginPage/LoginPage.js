@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import styles from './LoginPage.module.scss';
+import '../../components/App.scss';
+import Button from "../../components/Button";
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
@@ -33,8 +35,10 @@ export default function LoginView() {
   };
 
   return (
-    <div>
-      <h1 className={styles.title}>Вхід</h1>
+    <div className={styles.container}>
+      <div className={styles.title__container}>
+        <h1 className={styles.title}>Вхід</h1>
+      </div>    
 
       <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={schema}>
         <Form  className={styles.form} autoComplete="off">
@@ -60,8 +64,16 @@ export default function LoginView() {
             <ErrorMessage name="password" component="div" className={styles.error} />
         </label>
         <ul className={styles.list}>
-          <li className={styles.item}><button type="submit" className={styles.button}>Вхід</button></li>
-          <li className={styles.item}><a href='./register'><button type="button" className={styles.button}>Реєстрація</button></a></li>           
+            <li className={styles.item}>
+              <button type="submit" className={styles.button}>Вхід</button>
+              {/* <Button type="submit" className={''} title={'Вхід'}/> */}
+            </li>
+            <li className={styles.item}>
+              <a href='./register'>
+                <button type="button" className={styles.button}>Реєстрація</button>
+                {/* <Button type="button" className={''} title={'Реєстрація'}/> */}
+              </a>
+            </li>           
         </ul>        
       </Form>
       </Formik>
