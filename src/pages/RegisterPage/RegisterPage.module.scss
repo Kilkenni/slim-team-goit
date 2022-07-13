@@ -1,21 +1,9 @@
-ul,
-ol {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    text-decoration: none;
-}
+@use "../../components/_styles/default";
+@use "../../components/_styles/colors";
 
 .title {
     margin-bottom: 60px;
+    color: var(--accent-main);
 }
 
 .form {
@@ -29,6 +17,7 @@ a {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    color: var(--text-normal);
 }
 
 .input {
@@ -50,4 +39,8 @@ a {
 
 .item+.item {
     margin-left: 32px;
+}
+
+.error {
+    color: red;
 }
