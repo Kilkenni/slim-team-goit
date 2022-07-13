@@ -1,5 +1,6 @@
 import styles from "./Logo.module.scss";
 import { NavLink } from "react-router-dom";
+import SvgTextLogo from "./SvgTextLogo";
 import defaultLogo from "./logo.png";
 
 export default function Logo() {
@@ -9,8 +10,7 @@ export default function Logo() {
       <div className={styles.logo}>
         <img src={logo} alt="logo" className={styles.logo__img} />
         <div className={styles.logo__title}>
-          <span className={styles.logo__slim}>Slim</span>
-          <span className={styles.logo__mom}>Mom</span>
+          <SvgTextLogo />
         </div>
       </div>
     </NavLink>

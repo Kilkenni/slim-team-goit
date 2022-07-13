@@ -1,3 +1,4 @@
+
 import DiaryPageView from "../pages/DiaryPage/DiaryPageView";
 import MainPage from './MainPage'
 import { Routes, Route } from 'react-router-dom';
@@ -7,6 +8,7 @@ import { authOperations, authSelectors } from '../redux/auth';
 import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CalculatorPage from "../pages/CalculatorPage"
