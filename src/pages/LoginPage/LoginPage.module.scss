@@ -62,8 +62,11 @@ font-style: normal;
 .input{
     border: none;
     border-bottom: 1px solid #E0E0E0;
-    width: 240px;
+    width: 280px;
     background: transparent;
+    @media screen and (min-width: 768px) {
+            width: 240px;
+        }
     
 }
 
