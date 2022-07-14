@@ -1,26 +1,31 @@
+@use '../_styles/colors';
+@use '../_styles/mixins' as mixins;
+
 .container {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  // min-height: 80px;
-  padding-bottom: 20px;
-  padding-top: 20px;
-  border-bottom: 2px solid #e0e0e0;
-  @media screen and (min-width: 320px) {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  @media screen and (min-width: 768px) {
+  padding: 20px;
+  border-bottom: 2px solid var(--form-input);
+  font-family: 'Gotham Pro';
+  @include mixins.mediaquery('tablet', min) {
     padding-left: 32px;
     padding-right: 32px;
   }
 
-  @media screen and (min-width: 1280px) {
+  @include mixins.mediaquery('desktop', min) {
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 80px;
     justify-content: flex-start;
     border-bottom: 0px;
   }
+}
+.button {
+  border: none;
+  background-color: transparent;
+}
+.icon:hover,
+.icon:focus {
+  fill: var(--accent-main);
 }

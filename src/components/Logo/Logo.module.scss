@@ -1,18 +1,17 @@
-@use "../_styles/mixins" as mixins;
+@use '../_styles/mixins' as mixins;
 .logo {
   display: flex;
   position: relative;
-@media screen and (min-width: 1280px){
+  @include mixins.mediaquery('desktop', min) {
     min-width: 180px;
     padding-bottom: 10px;
-}
-  
   }
+}
 .logo__img {
   width: 47px;
   height: 44px;
   margin-right: 10px;
-  @media screen and (min-width: 1280px) {
+  @include mixins.mediaquery('desktop', min) {
     width: 70px;
     height: 66px;
   }
@@ -20,15 +19,14 @@
 .logo__title {
   display: none;
   font-size: 20px;
-  @media screen and (min-width: 768px) {
+  @include mixins.mediaquery('tablet', min) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  @media screen and (min-width: 1280px) {
+  @include mixins.mediaquery('desktop', min) {
     position: absolute;
     bottom: 10px;
     left: 55px;
   }
 }
-

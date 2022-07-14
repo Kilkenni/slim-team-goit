@@ -1,6 +1,9 @@
+@use "../_styles/colors";
+@use "../_styles/mixins" as mixins;
+
 .navigation{
-  display: none;
-  @media screen and (min-width: 1280px){
+  display: block;
+  @include mixins.mediaquery('desktop', min){
     display: flex;
     border-left: #9B9FAA solid 2px;
   }
@@ -11,20 +14,24 @@
   display: inline-block;
   text-decoration: none;
   padding: 8px 0px 8px 20px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-size: 14px;
-  color: #212121;
+  color: var(--text-contrast);
 }
 
 .active {
   display: inline-block;
   text-decoration: none;
   padding: 8px 0px 8px 20px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  font-size: 14px;
-  color: #9B9FAA;
+  color: var(--text-normal);
+}
+
+.active:hover, .link:hover{
+  color: var(--accent-main);
 }

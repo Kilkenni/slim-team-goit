@@ -1,5 +1,5 @@
-import DiaryPageView from "../pages/DiaryPage/DiaryPageView";
-import MainPage from './MainPage'
+import DiaryPageView from '../pages/DiaryPage/DiaryPageView';
+import MainPage from './MainPage';
 import { Routes, Route } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,9 +8,9 @@ import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
-import LoginPage from "../pages/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
-import CalculatorPage from "../pages/CalculatorPage"
+import LoginPage from '../pages/LoginPage';
+import RegisterPage from '../pages/RegisterPage';
+import CalculatorPage from '../pages/CalculatorPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,12 +28,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route
             path=""
-            element={isLoggedIn ? <DiaryPageView /> : <MainPage/>}
-          />            
+            element={isLoggedIn ? <DiaryPageView /> : <MainPage />}
+          />
           <Route
             path="register"
             element={
-              <PublicRoute>
+              <PublicRoute restricted>
                 <RegisterPage />
               </PublicRoute>
             }
@@ -41,17 +41,24 @@ function App() {
           <Route
             path="login"
             element={
-              <PublicRoute>
+              <PublicRoute redirectTo="/" restricted>
                 <LoginPage />
               </PublicRoute>
             }
           />
-          <Route path="calculator" element={<PrivateRoute> <CalculatorPage /></PrivateRoute>}/>
+          <Route
+            path="calculator"
+            element={
+              <PrivateRoute>
+                {' '}
+                <CalculatorPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
-      )
-      }
-    </Routes>  
- );
+      )}
+    </Routes>
+  );
 }
 
 export default App;

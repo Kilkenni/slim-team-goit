@@ -1,16 +1,16 @@
-import { useSelector } from "react-redux";
-import { authSelectors } from "../../redux/auth";
-import styles from "./Navigation.module.scss";
-import { NavLink } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../../redux/auth';
+import styles from './Navigation.module.scss';
+import { NavLink } from 'react-router-dom';
 
 function Navigation() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
-    <nav className={styles.navigation}>
+    <nav>
       {isLoggedIn && (
-        <>
+        <div className={styles.navigation}>
           <NavLink
-            to="/diary"
+            to="/"
             className={({ isActive }) =>
               isActive ? styles.active : styles.link
             }
@@ -25,7 +25,7 @@ function Navigation() {
           >
             Калькулятор
           </NavLink>
-        </>
+        </div>
       )}
     </nav>
   );
