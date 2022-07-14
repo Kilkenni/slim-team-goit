@@ -9,12 +9,10 @@ export default class MyDTPicker extends React.Component {
         return <Datetime renderInput={ this.renderInput } dateFormat="DD.MM.YYYY" timeFormat={false}/>;
     }
     renderInput( props, openCalendar, closeCalendar ){
-        function clear(){
-            props.onChange({target: {value: ''}});
-        }
         return (
             <div className={styles.calendar}>
-                <input {...props} className={styles.input} />
+                <input {...props} className={styles.input}
+                placeholder="Введіть дату*"/>
                 <button onClick={openCalendar} className={styles.button}><Calendar height={20} width={20} /></button>
             </div>
         );
