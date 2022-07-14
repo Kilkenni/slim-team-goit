@@ -3,6 +3,13 @@ import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import styles from './RegisterPage.module.scss';
 
+import banana from "../../components/MainPage/images/banana.png";
+import strawberry from "../../components/MainPage/images/strawberry.png";
+import leaves from "../../components/MainPage/images/leaves-new.png";
+import leavesTable from "../../components/MainPage/images/leaves-table-new.png";
+import mainVector from "../../components/MainPage/images/main-vector.svg";
+import '../../components/App.scss';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
@@ -36,7 +43,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
+      <div className={styles.container}>
       <div className={styles.title__container}>
         <h1 className={styles.title}>Реєстрація</h1>
       </div>      
@@ -77,12 +85,29 @@ export default function RegisterPage() {
         </label>
 
         <ul className={styles.list}>
-          <li className={styles.item}><a href='./login'><button type="button"  className={styles.button}>Вхід</button></a></li>
-          <li className={styles.item}><button type="submit" className={styles.button}>Реєстрація</button></li>           
+          <li className={styles.item}><a href='./login'><button type="button"  className={styles.btn}>Вхід</button></a></li>
+          <li className={styles.item}><button type="submit" className={styles.btn__second}>Реєстрація</button></li>           
         </ul>       
       </Form>
       </Formik>
       
     </div>
+
+    <div className="main__img--wrapper">
+        <div className="leaf leaf-first"></div>
+        <div className="leaf leaf-second"></div>
+        <div className="leaf leaf-third"></div>
+        <div className="leaf leaf-fourth"></div>
+
+        <img src={leavesTable} className="main__img leavesTable" alt="leaves" />
+        <img src={leaves} className="main__img leaves" alt="leaves" />
+        <div id="banana">
+        <img src={banana} className="main__img banana" alt="banana" />
+        </div>
+        <img src={strawberry} className="main__img strawberry" alt="strawberry" />
+        <img src={mainVector} className="main__img mainVector" alt="backround-vector" />
+      </div>
+    </div>
+    
   );
 }

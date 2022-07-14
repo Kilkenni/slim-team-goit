@@ -6,6 +6,12 @@
 
 .container{
     margin-top: 160px;
+    position: relative;
+    @media screen and (min-width: 320px) {
+           
+            z-index: 999;
+        }
+   
 }
 
 .title__container{
@@ -57,13 +63,11 @@ font-style: normal;
     border: none;
     border-bottom: 1px solid #E0E0E0;
     width: 240px;
+    background: transparent;
     
 }
 
-// .button {
-//     width: 100px;
-   
-// }
+
 
 .list{
     display: flex;

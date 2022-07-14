@@ -1,10 +1,18 @@
 @use "../../components/_styles/default";
 @use "../../components/_styles/colors";
 @use "../../components/_styles/fonts";
+@use "../../components/_styles/placeholders";
 
 
 .container {
     margin-top: 160px;
+    position: relative;
+
+    @media screen and (min-width: 320px) {
+
+        z-index: 999;
+    }
+
 }
 
 .title__container {
@@ -57,13 +65,11 @@
     border: none;
     border-bottom: 1px solid #E0E0E0;
     width: 240px;
+    background: transparent;
 
 }
 
-.button {
-    width: 100px;
 
-}
 
 .list {
     display: flex;
@@ -88,4 +94,54 @@
 
 .error {
     color: red;
+}
+
+//current style button
+.btn {
+    width: fit-content;
+    min-width: 182px;
+    margin: 0 auto;
+    padding: 15px 25px;
+    border: none;
+    color: var(--background);
+    border: 1px solid var(--accent-main);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    border-radius: 30px;
+    @extend %fontCurrent;
+    text-align: center;
+    cursor: pointer;
+    background: var(--accent-main);
+    opacity: 1;
+
+    &:hover:enabled {
+        box-sizing: border-box;
+        color: var(--accent-main);
+        background: var(--background);
+        box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    }
+}
+
+//second style button revers
+.btn__second {
+    width: fit-content;
+    min-width: 182px;
+    margin: 0 auto;
+    padding: 15px 25px;
+    border: none;
+    border: 1px solid var(--accent-main);
+    border-radius: 30px;
+    @extend %fontCurrent;
+    text-align: center;
+    cursor: pointer;
+    opacity: 1;
+    color: var(--accent-main);
+    background: var(--background);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+
+    &:hover {
+        color: var(--background);
+        background: var(--accent-main);
+        border: 1px solid var(--accent-main);
+        box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    }
 }
