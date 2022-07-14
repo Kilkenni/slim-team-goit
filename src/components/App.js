@@ -1,4 +1,3 @@
-
 import DiaryPageView from "../pages/DiaryPage/DiaryPageView";
 import MainPage from './MainPage'
 import { Routes, Route } from 'react-router-dom';
