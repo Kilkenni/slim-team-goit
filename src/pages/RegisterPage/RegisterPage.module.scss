@@ -1,0 +1,147 @@
+@use "../../components/_styles/default";
+@use "../../components/_styles/colors";
+@use "../../components/_styles/fonts";
+@use "../../components/_styles/placeholders";
+
+
+.container {
+    margin-top: 160px;
+    position: relative;
+
+    @media screen and (min-width: 320px) {
+
+        z-index: 999;
+    }
+
+}
+
+.title__container {
+
+    @media screen and (max-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+.title {
+    margin-bottom: 60px;
+    color: var(--accent-main);
+    text-transform: uppercase;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 13px;
+    letter-spacing: 0.04em;
+
+    font-family: 'Gotham Pro';
+
+}
+
+.form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    color: var(--text-normal);
+    font-family: 'Verdana', sans-serif;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid #E0E0E0;
+    width: 240px;
+    background: transparent;
+
+}
+
+
+
+.list {
+    display: flex;
+    margin-top: 60px;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.item+.item {
+    margin-top: 20px;
+
+    @media screen and (min-width: 768px) {
+        margin-left: 32px;
+        margin-top: 0;
+    }
+
+}
+
+.error {
+    color: red;
+}
+
+//current style button
+.btn {
+    width: fit-content;
+    min-width: 182px;
+    margin: 0 auto;
+    padding: 15px 25px;
+    border: none;
+    color: var(--background);
+    border: 1px solid var(--accent-main);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    border-radius: 30px;
+    @extend %fontCurrent;
+    text-align: center;
+    cursor: pointer;
+    background: var(--accent-main);
+    opacity: 1;
+
+    &:hover:enabled {
+        box-sizing: border-box;
+        color: var(--accent-main);
+        background: var(--background);
+        box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    }
+}
+
+//second style button revers
+.btn__second {
+    width: fit-content;
+    min-width: 182px;
+    margin: 0 auto;
+    padding: 15px 25px;
+    border: none;
+    border: 1px solid var(--accent-main);
+    border-radius: 30px;
+    @extend %fontCurrent;
+    text-align: center;
+    cursor: pointer;
+    opacity: 1;
+    color: var(--accent-main);
+    background: var(--background);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+
+    &:hover {
+        color: var(--background);
+        background: var(--accent-main);
+        border: 1px solid var(--accent-main);
+        box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    }
+}
