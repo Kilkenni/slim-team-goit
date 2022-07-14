@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
 import styles from './LoginPage.module.scss';
+import s from '../../pages/MainPage/MainPage.module.scss';
 
 import banana from "../../components/MainPage/images/banana.png";
 import strawberry from "../../components/MainPage/images/strawberry.png";
@@ -83,19 +84,27 @@ export default function LoginView() {
       </Formik>
       
     </div>
-    <div className="main__img--wrapper">
-        <div className="leaf leaf-first"></div>
-        <div className="leaf leaf-second"></div>
-        <div className="leaf leaf-third"></div>
-        <div className="leaf leaf-fourth"></div>
+          <div className={s['main__img--wrapper']}>
+        <div className={s['leaf-first']}></div>
+        <div className={s['leaf-second']}></div>
+        <div className={s['leaf-third']}></div>
+        <div className={s['leaf-fourth']}></div>
 
-        <img src={leavesTable} className="main__img leavesTable" alt="leaves" />
-        <img src={leaves} className="main__img leaves" alt="leaves" />
-        <div id="banana">
-        <img src={banana} className="main__img banana" alt="banana" />
+        <img src={leavesTable} className={s['leavesTable']} alt="leaves" />
+        <img src={leaves} className={s['leaves']} alt="leaves" />
+        <div id={s['banana']}>
+          <img src={banana} className={s['banana']} alt="banana" />
         </div>
-        <img src={strawberry} className="main__img strawberry" alt="strawberry" />
-        <img src={mainVector} className="main__img mainVector" alt="backround-vector" />
+        <img
+          src={strawberry}
+          className={s['strawberry']}
+          alt="strawberry"
+        />
+        <img
+          src={mainVector}
+          className={s['mainVector']}
+          alt="backround-vector"
+        />
       </div>
     </div>    
   );
