@@ -34,7 +34,7 @@ function App() {
           <Route
             path="register"
             element={
-              <PublicRoute>
+              <PublicRoute redirectTo="/calculator" restricted>
                 <RegisterPage />
               </PublicRoute>
             }
@@ -42,7 +42,7 @@ function App() {
           <Route
             path="login"
             element={
-              <PublicRoute>
+              <PublicRoute redirectTo="/calculator" restricted>
                 <LoginPage />
               </PublicRoute>
             }
