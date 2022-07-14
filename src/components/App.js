@@ -1,5 +1,4 @@
 import DiaryPageView from "../pages/DiaryPage/DiaryPageView";
-import MainPage from './MainPage'
 import { Routes, Route } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +7,7 @@ import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 
+import MainPage from "../pages/MainPage/index";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CalculatorPage from "../pages/CalculatorPage"

@@ -1,8 +1,8 @@
-import '../App.scss'
+import styles from "./Button.module.scss";
 
-function Button({title, type, disabled=true, className}){
+function Button({id, title, type, disabled=false, className, onClose}){
     return (
-        <button disabled={disabled} type={type} className={className}>{title}</button>
+        <button id={styles[id]} disabled={disabled} type={type} className={styles[className]} onClick={onClose}>{title}</button>
     )
 }
 
