@@ -1,20 +1,22 @@
-import Container from "../../components/Container";
 import DailyCaloriesForm from '../../components/DailyCaloriesForm/DailyCaloriesForm';
-import LeftSideBar from '../../components/LeftSideBar';
-import RightSideBar from '../../components/RightSideBar';
-
+import RightSideBar from '../../components/RightSideBar/RightSideBar';
+import styles from "./CalculatorPage.module.scss";
 
 
 const CalculatorPage = () => {
   return (
-    <Container>
-    <LeftSideBar>
-        <DailyCaloriesForm />
-    </LeftSideBar>
-    <RightSideBar/>
-</Container>
+    <div className={styles.container}>
+    <div className={styles.container_calculator}>
+    <h1 className={styles.container__title}>Розрахуйте добову норму калорій прийом прямо зараз</h1>
+      <DailyCaloriesForm />
+      </div>
+      <RightSideBar/>
+    </div>
+
   
   );
 };
 
 export default CalculatorPage;
+
+
