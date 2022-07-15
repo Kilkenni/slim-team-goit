@@ -19,15 +19,17 @@
   background-color: var(--accent-secondary);
   margin-left: auto;
   margin-right: auto;
+  padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 60px;
+  
+    @include mixins.mediaquery('tablet', min) {
+      padding-top: 100px;
+    }
 }
 
 
 .contentBlock {
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 60px;
   text-align: center;
-  @include mixins.mediaquery('tablet', min) {
-    padding-top: 100px;
-  }
+  
 }

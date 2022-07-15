@@ -15,7 +15,6 @@ import sprite from './sprite.svg';
 export default function Header() {
   // const navigate = useNavigate();
   const location = useLocation();
-  console.log('location', location);
 
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +37,7 @@ export default function Header() {
     <header className={styles.container}>
       <div className={styles.top}>
         <Logo />
-        {isDesktop && <Navigation />}
+        {isLoggedIn && isDesktop && <Navigation />}
         {isLoggedIn
           ? !isMobile && <UserMenu />
           : location.pathname !== '/login' &&
@@ -51,7 +50,12 @@ export default function Header() {
           </button>
         )}
       </div>
-      <div className={styles.bottom}>{isMobile && <UserMenu />}</div>
+      {isMobile && isLoggedIn && (
+        <div className={styles.bottom}>
+          <UserMenu />
+        </div>
+      )}
+
       {showModal && (
         <ModalHeader onClose={toggleModal}>
           <Navigation />

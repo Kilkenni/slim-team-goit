@@ -1,4 +1,6 @@
 @use '../_styles/mixins' as mixins;
+@use '../_styles/colors';
+
 .logo {
   display: flex;
   position: relative;
@@ -18,7 +20,7 @@
 }
 .logo__title {
   display: none;
-    @include mixins.mediaquery('tablet', min) {
+  @include mixins.mediaquery('tablet', min) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,13 +30,16 @@
     bottom: 10px;
     left: 55px;
   }
+  &:hover {
+    stroke: var(--accent-main);
+  }
 }
 
 .logo__title_mob {
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    &:hover {
+        stroke: var(--accent-main);
+      }
 }
