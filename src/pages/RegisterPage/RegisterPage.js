@@ -9,7 +9,7 @@ import strawberry from "../../components/MainPage/images/strawberry.png";
 import leaves from "../../components/MainPage/images/leaves-new.png";
 import leavesTable from "../../components/MainPage/images/leaves-table-new.png";
 import mainVector from "../../components/MainPage/images/main-vector.svg";
-import '../../components/App.scss';
+// import '../../components/App.scss';
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
