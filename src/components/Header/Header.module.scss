@@ -1,26 +1,44 @@
+@use '../_styles/colors';
+@use '../_styles/mixins' as mixins;
+
 .container {
+  z-index: 500;
+  position: relative;
+  font-family: 'Gotham Pro';
+ }
+.top{
+    display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 20px;
+      border-bottom: 2px solid var(--form-input);
+      @include mixins.mediaquery('tablet', min) {
+          padding-left: 32px;
+          padding-right: 32px;
+        }
+      @include mixins.mediaquery('desktop', min) {
+         justify-content: flex-start;
+            padding-left: 16px;
+              padding-right: 16px;
+              padding-top: 80px;
+              border-bottom: 0px;
+
+        }
+}
+.bottom{
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  // min-height: 80px;
-  padding-bottom: 20px;
-  padding-top: 20px;
-  border-bottom: 2px solid #e0e0e0;
-  @media screen and (min-width: 320px) {
-    padding-left: 20px;
-    padding-right: 20px;
+  padding: 4px 10px;
+  background-color: var(--background-modal-close);
+  @include mixins.mediaquery('tablet', min){
+    display: none;
   }
-
-  @media screen and (min-width: 768px) {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 80px;
-    justify-content: flex-start;
-    border-bottom: 0px;
-  }
+}
+.button {
+  border: none;
+  background-color: transparent;
+}
+.icon:hover,
+.icon:focus {
+  fill: var(--accent-main);
 }
