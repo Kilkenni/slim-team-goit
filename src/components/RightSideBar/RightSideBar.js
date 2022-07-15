@@ -1,9 +1,9 @@
 import styles from './RightSideBar.module.scss';
-export default function RightSideBar() {
+export default function RightSideBar(props) {
     return (
         <div className={styles.container}>
             <div className={styles.summery}>
-                <h1 className={styles.header}>Зведення на <span></span></h1>
+                <h1 className={styles.header}>Звіт на <span>{new Date(props.date).toLocaleDateString().replace(/\./g, "/")}</span></h1>
                 <ul className={styles.list}>
                     <li className={styles.item}>
                         <p className={styles.text}>Залишилось</p><span className={styles.text}>000 ккал</span>
@@ -21,8 +21,7 @@ export default function RightSideBar() {
             </div>
             <div className={styles.norecommended}>
                 <h2 className={styles.header}>Не рекомендована їжа</h2>
-                <p className={styles.text}>Всі бульйони / відвари, жирна риба, ікра і м'ясо, гриби, крупи
-                    (просо, ячмінь, пшениця)</p>
+                <p className={styles.text}>Тут відображатиметься ваша дієта</p>
             </div>
         </div>
     );
