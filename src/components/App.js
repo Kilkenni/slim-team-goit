@@ -34,12 +34,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route
             path=""
-            element={isLoggedIn ? <DiaryPageView /> : <MainPage/>}
-          />            
+            element={isLoggedIn ? <DiaryPageView /> : <MainPage />}
+          />
           <Route
             path="register"
             element={
-              <PublicRoute redirectTo="/calculator" restricted>
+              <PublicRoute restricted>
                 <RegisterPage />
               </PublicRoute>
             }
@@ -47,17 +47,23 @@ function App() {
           <Route
             path="login"
             element={
-              <PublicRoute redirectTo="/calculator" restricted>
+              <PublicRoute redirectTo="/" restricted>
                 <LoginPage />
               </PublicRoute>
             }
           />
-          <Route path="calculator" element={<PrivateRoute> <CalculatorPage /></PrivateRoute>}/>
+          <Route
+            path="calculator"
+            element={
+              <PrivateRoute>
+                <CalculatorPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
-      )
-      }
-    </Routes>  
- );
+      )}
+    </Routes>
+  );
 }
 
 export default App;

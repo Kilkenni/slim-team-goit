@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { authSelectors, authOperations } from "../../redux/auth";
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors, authOperations } from '../../redux/auth';
 
-import styles from "./UserMenu.module.scss";
+import styles from './UserMenu.module.scss';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -9,9 +9,7 @@ export default function UserMenu() {
 
   return (
     <div className={styles.container}>
-      <span className={styles.name}>
-        Вітаю, <b>{name}!</b>
-      </span>
+      <span className={styles.name}>{name}</span>
 
       <button
         className={styles.button}
