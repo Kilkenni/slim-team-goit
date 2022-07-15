@@ -4,7 +4,7 @@ import strawberry from "./images/strawberry.png";
 import leaves from "./images/leaves-new.png";
 import leavesTable from "./images/leaves-table-new.png";
 import mainVector from "./images/main-vector.svg";
-import '../App.scss';
+// import '../App.scss';
 import DailyCaloriesForm from '../DailyCaloriesForm/index';
 import Modal from "../Modal";
 

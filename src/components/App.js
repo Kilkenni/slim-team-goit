@@ -1,5 +1,4 @@
 import DiaryPageView from '../pages/DiaryPage/DiaryPageView';
-import MainPage from './MainPage';
 import { Routes, Route } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

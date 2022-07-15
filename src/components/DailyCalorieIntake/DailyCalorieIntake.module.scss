@@ -1,0 +1,61 @@
+@use '../_styles/placeholders';
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 40px;
+  align-items: center;
+  padding: 40px 0 0;
+  @media screen and (min-width: 768px) {
+    padding: 40px 80px 0;
+  }
+  &__inner {
+  }
+  &__title {
+    margin-bottom: 40px;
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: center;
+    color: #212121;
+    @media screen and (min-width: 768px) {
+      margin-bottom: 20px;
+      font-size: 26px;
+      line-height: 32px;
+    }
+  }
+  &__calories {
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #264061;
+    span {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+  &__subtitle {
+    @extend %fontCurrent;
+    margin-bottom: 20px;
+    color: #212121;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 20px;
+    list-style: auto;
+    color: #9B9FAA;
+  }
+  &__item {
+  }
+  &__text {
+    @extend %fontSecond;
+    color: #9b9faa;
+  }
+}
