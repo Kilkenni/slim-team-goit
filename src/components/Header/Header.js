@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelectors } from '../../redux/auth';
 import { useMediaQuery } from '../../js/hooks';
@@ -8,16 +9,26 @@ import Logo from '../Logo';
 import Navigation from '../Navigation';
 import AuthNavigation from '../AuthNavigation';
 import UserMenu from '../UserMenu';
-import Modal from '../Modal';
+import ModalHeader from '../ModalHeader';
 import sprite from './sprite.svg';
 
 export default function Header() {
+  // const navigate = useNavigate();
+  const location = useLocation();
+  console.log('location', location);
+
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const [showModal, setShowModal] = useState(false);
+
   const desktopSize = getComputedStyle(
     document.documentElement
   ).getPropertyValue('--breakpoint-desktop');
   const isDesktop = useMediaQuery(`(min-width: ${desktopSize})`);
+
+  const tabletSize = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue('--breakpoint-tablet');
+  const isMobile = useMediaQuery(`(max-width: ${tabletSize})`);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -25,20 +36,26 @@ export default function Header() {
 
   return (
     <header className={styles.container}>
-      <Logo />
-      {isDesktop && <Navigation />}
-      {isLoggedIn ? <UserMenu /> : <AuthNavigation />}
-      {!isDesktop && isLoggedIn && (
-        <button type="button" className={styles.button} onClick={toggleModal}>
-          <svg alt="menu icon" width="24" height="24" className={styles.icon}>
-            <use href={`${sprite}#icon-burger-menu`}></use>
-          </svg>
-        </button>
-      )}
+      <div className={styles.top}>
+        <Logo />
+        {isDesktop && <Navigation />}
+        {isLoggedIn
+          ? !isMobile && <UserMenu />
+          : location.pathname !== '/login' &&
+            location.pathname !== '/register' && <AuthNavigation />}
+        {!isDesktop && isLoggedIn && (
+          <button type="button" className={styles.button} onClick={toggleModal}>
+            <svg alt="menu icon" width="24" height="24" className={styles.icon}>
+              <use href={`${sprite}#icon-burger-menu`}></use>
+            </svg>
+          </button>
+        )}
+      </div>
+      <div className={styles.bottom}>{isMobile && <UserMenu />}</div>
       {showModal && (
-        <Modal onClose={toggleModal}>
+        <ModalHeader onClose={toggleModal}>
           <Navigation />
-        </Modal>
+        </ModalHeader>
       )}
     </header>
   );

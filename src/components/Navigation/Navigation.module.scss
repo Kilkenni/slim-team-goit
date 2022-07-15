@@ -1,37 +1,54 @@
-@use "../_styles/colors";
-@use "../_styles/mixins" as mixins;
+@use '../_styles/colors';
+@use '../_styles/mixins' as mixins;
 
-.navigation{
-  display: block;
-  @include mixins.mediaquery('desktop', min){
+.navigation {
+  display: flex;
+  flex-direction: column;
+  @include mixins.mediaquery('desktop', min) {
     display: flex;
-    border-left: #9B9FAA solid 2px;
+    flex-direction: row;
+    border-left: #9b9faa solid 2px;
   }
 }
-
 
 .link {
   display: inline-block;
   text-decoration: none;
-  padding: 8px 0px 8px 20px;
-  font-size: 14px;
+  padding: 15px 0px 15px 20px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-contrast);
+  color: var(--background);
+  @include mixins.mediaquery('tablet', min) {
+    font-size: 24px;
+  }
+  @include mixins.mediaquery('desktop', min) {
+    padding: 8px 0px 8px 20px;
+    font-size: 14px;
+    color: var(--text-contrast);
+  }
 }
 
 .active {
   display: inline-block;
   text-decoration: none;
-  padding: 8px 0px 8px 20px;
-  font-size: 14px;
+  padding: 15px 0px 15px 20px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--text-normal);
-}
+  @include mixins.mediaquery('tablet', min) {
+      font-size: 24px;
+    }
+  @include mixins.mediaquery('desktop', min) {
+    padding: 8px 0px 8px 20px;
+      font-size: 14px;
+    }
+  }
 
-.active:hover, .link:hover{
+.active:hover,
+.link:hover {
   color: var(--accent-main);
 }

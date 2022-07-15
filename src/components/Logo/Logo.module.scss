@@ -18,8 +18,7 @@
 }
 .logo__title {
   display: none;
-  font-size: 20px;
-  @include mixins.mediaquery('tablet', min) {
+    @include mixins.mediaquery('tablet', min) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,4 +28,13 @@
     bottom: 10px;
     left: 55px;
   }
+}
+
+.logo__title_mob {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+
 }

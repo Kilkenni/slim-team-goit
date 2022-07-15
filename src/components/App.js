@@ -6,7 +6,7 @@ import { authOperations, authSelectors } from '../redux/auth';
 import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-
+import MainPage from '../pages/MainPage';
 import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import CalculatorPage from '../pages/CalculatorPage';
@@ -49,7 +49,6 @@ function App() {
             path="calculator"
             element={
               <PrivateRoute>
-                {' '}
                 <CalculatorPage />
               </PrivateRoute>
             }

@@ -2,23 +2,36 @@
 @use '../_styles/mixins' as mixins;
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 20px;
-  border-bottom: 2px solid var(--form-input);
+  z-index: 500;
+  position: relative;
   font-family: 'Gotham Pro';
-  @include mixins.mediaquery('tablet', min) {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
+ }
+.top{
+    display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 20px;
+      border-bottom: 2px solid var(--form-input);
+      @include mixins.mediaquery('tablet', min) {
+          padding-left: 32px;
+          padding-right: 32px;
+        }
+      @include mixins.mediaquery('desktop', min) {
+         justify-content: flex-start;
+            padding-left: 16px;
+              padding-right: 16px;
+              padding-top: 80px;
+              border-bottom: 0px;
 
-  @include mixins.mediaquery('desktop', min) {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 80px;
-    justify-content: flex-start;
-    border-bottom: 0px;
+        }
+}
+.bottom{
+  display: flex;
+  align-items: flex-end;
+  padding: 4px 10px;
+  background-color: var(--background-modal-close);
+  @include mixins.mediaquery('tablet', min){
+    display: none;
   }
 }
 .button {
