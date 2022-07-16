@@ -4,11 +4,14 @@
 @use "../_styles/fonts";
 
 .block {
-  display: none;
   @include mixins.mediaquery ("tablet", min) {
     display: block;
     margin-top: 49px;
   }
+}
+
+.box{
+  display: block
 }
 
 .form {
@@ -88,7 +91,7 @@
   background: var(--accent-main);
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border-radius: 30px;
-  border: none;
+  border: 0.5px solid var(--accent-main);
   cursor: pointer;  
   @include mixins.mediaquery ("tablet", min) {
     align-items: center;
@@ -103,7 +106,6 @@
   background-color: var(--background);
   color: var(--accent-main);
   border: 0.5px solid var(--accent-main);
-  margin: -1px;
   transition: all 250ms linear;
   @include mixins.mediaquery ("tablet", min) {
     margin: 0;
