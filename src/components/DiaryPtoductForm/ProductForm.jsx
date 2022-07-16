@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import s from './ProductForm.module.scss';
+import {useForm} from 'react-hook-form'
 
-function ProductForm({ onSubmit }) {
-
+function ProductForm({ visibleForm }) {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const{
+    register,
+    handleSubmit,
+    formState: {errors}
+  } =useForm()
 
   const handleInputChange = event => {
     const { name, value } = event.target;
@@ -20,37 +26,43 @@ function ProductForm({ onSubmit }) {
         return;
     }
   };
-
+  const onSubmit = (e) => {
+    // e.preventDefault()
+    
+  }
   return (
-    <div className={s.block}>
-      <form className={s.form}>
+    <div className={`${s.block} `}>
+      {visibleForm && 
+      <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
         <label className={s.name}>
           <input
+            {...register('name', {
+              required:'Введіть більше 2 символів'
+            })}
             type="text"
             name="name"
             className={s.inputName}
-            required
             value={name}
             onChange={handleInputChange}
             placeholder="Введіть назву продукту"
           />
+          {errors  && <span>{ errors.name?.message}</span>}
         </label>
         <label className={s.gram}>
           <input
             type="number"
             name="number"
             className={s.inputGram}
-            required
             value={number}
             onChange={handleInputChange}
             placeholder="Грами"
           />
         </label>
-        <button className={s.button}>
+        <button type='submit' className={s.button}>
           <p className={s.add}>Додати</p>
           <span className={s.plus}>+</span>
         </button>
-      </form>
+      </form> }
     </div>
   );
 }

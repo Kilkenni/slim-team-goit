@@ -3,8 +3,7 @@ import DiaryDateСalendar from '../../components/DiaryDateСalendar/DiaryDateСa
 import LeftSideBar from '../../components/LeftSideBar';
 import RightSideBar from '../../components/RightSideBar';
 import { useState } from 'react';
-import DiaryProductList from '../../components/DiaryPtoductList';
-import DiaryProductForm from '../../components/DiaryPtoductForm';
+import DiaryProduct from '../../components/DiaryProduct';
 
 export default function DiaryPageView() {
     const [date, setDate] = useState(new Date());
@@ -13,8 +12,7 @@ export default function DiaryPageView() {
         <Container date={date}>
             <LeftSideBar>
                 <DiaryDateСalendar onChangeDate={setDate} date={date} />
-                <DiaryProductForm />
-                <DiaryProductList />
+                <DiaryProduct />
             </LeftSideBar>
             <RightSideBar date={date} />
         </Container>
