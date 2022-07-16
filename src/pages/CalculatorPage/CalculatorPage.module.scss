@@ -2,12 +2,6 @@
 @use "../../components/_styles/mixins" as mixins;
 @use "../../components/_styles/default";
 
-.container {
-    @include mixins.mediaquery ("desktop", min) {
-        display: flex;
-        justify-content: space-between;
-    }
-}
 .container_calculator{
     padding: 32px 20px 41px 20px;
   @media screen and (min-width: 768px) {

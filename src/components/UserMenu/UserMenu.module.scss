@@ -4,6 +4,14 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  @media screen and (min-width: 1280px) {
+      min-width: 517px;
+      background-color: #f0f1f3;
+      padding: 134px 115px 17px 204px; 
+      margin-top: -80px;
+      margin-bottom: -20px;
+      margin-right: -16px;
+}
 }
 .name {
   display: inline-block;
