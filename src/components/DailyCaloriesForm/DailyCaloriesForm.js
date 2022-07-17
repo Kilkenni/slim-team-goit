@@ -6,6 +6,8 @@ import styles from './DailyCaloriesForm.module.scss';
 import Modal from '../Modal';
 import DailyCalorieIntake from '../DailyCalorieIntake';
 import { getPublicData } from '..//../js/backendAPI'
+import { authSelectors } from '../../redux/auth';
+import {useSelector } from 'react-redux';
 
 import * as yup from 'yup';
 
@@ -40,9 +42,11 @@ const schema = yup.object().shape({
     .required("Обов'язкове поле"),
 });
 
-function DailyCaloriesForm() {
+function DailyCaloriesForm({onSumbForm}) {
   const [list, setList ] = useState()
   const [showModal, setShowModal] = useState(false);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -51,7 +55,10 @@ function DailyCaloriesForm() {
   const submitForm = (values, { resetForm }) => {
     getPublicData(values).then(setList);
     resetForm({ values: '' });
+    if (!isLoggedIn) {
     toggleModal();
+    }
+    onSumbForm(values);
   };
 
   return (
