@@ -6,7 +6,7 @@ import { authSelectors } from '../../redux/auth';
 import { useMediaQuery } from '../../js/hooks';
 import { useSelector } from 'react-redux';
 
-export default function Logo() {
+export default function Logo({...DOMprops}) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const tabletSize = getComputedStyle(
     document.documentElement
@@ -15,7 +15,7 @@ export default function Logo() {
   const logo = defaultLogo;
   return (
     <NavLink to="/">
-      <div className={styles.logo}>
+      <div className={styles.logo} {...DOMprops}>
         <img src={logo} alt="logo" className={styles.logo__img} />
         <div className={styles.logo__title}>
           <svg alt="logo title" width="106" height="16">

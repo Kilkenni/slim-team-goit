@@ -39,7 +39,7 @@ function Modal({ onClose, children, ...otherProps }) {
   return createPortal(
     <div className={styles.backdrop} onClick={closeOnBackdrop}>
       <div className={styles.modal}>
-        {isMobile && <Header />}
+        {isMobile && <Header onClick={() => onClose(true)} />}
         <div className={styles.closeBlock}>
           <button type="button" className={styles["btn-close"]} onClick={onClose}>
             {isMobile ?

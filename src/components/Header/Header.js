@@ -12,7 +12,7 @@ import UserMenu from '../UserMenu';
 import ModalHeader from '../ModalHeader';
 import sprite from './sprite.svg';
 
-export default function Header() {
+export default function Header({...DOMprops}) {
   // const navigate = useNavigate();
   const location = useLocation();
 
@@ -36,7 +36,7 @@ export default function Header() {
   return (
     <header className={styles.container}>
       <div className={styles.top}>
-        <Logo />
+        <Logo {...DOMprops} />
         {isLoggedIn && isDesktop && <Navigation />}
         {isLoggedIn
           ? !isMobile && <UserMenu />

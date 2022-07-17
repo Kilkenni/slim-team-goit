@@ -1,12 +1,25 @@
+import { useState } from "react";
 import banana from './images/banana.png';
 import strawberry from './images/strawberry.png';
 import leaves from './images/leaves-new.png';
 import leavesTable from './images/leaves-table-new.png';
 import mainVector from './images/main-vector.svg';
 import styles from './MainPage.module.scss';
-import DailyCaloriesForm from '..//../components/DailyCaloriesForm';
+import DailyCaloriesForm from '../../components/DailyCaloriesForm';
+
+import Modal from "../../components/Modal";
 
 function MainPage() {
+  const [showModal, setShowModal] = useState(true);
+
+  const toggleModal = (forceHide = false) => {
+    if (forceHide) {
+      setShowModal(false);
+      return;
+    }
+    setShowModal(!showModal);
+  }
+
   return (
     <div className={styles['main']}>
       <div className={styles['main__content']}>
@@ -14,6 +27,11 @@ function MainPage() {
           Розрахуйте добову норму калорій прийом прямо зараз
         </h1>
         <DailyCaloriesForm />
+        {showModal &&
+          <Modal onClose={toggleModal}>
+            <button type="button" onClick={() => toggleModal(true)}>close</button>
+          </Modal>
+        }
       </div>
 
       <div className={styles['main__img--wrapper']}>
