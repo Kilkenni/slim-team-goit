@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CircleLoader } from "react-spinners";
 import { authOperations, authSelectors } from '../redux/auth';
 import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
@@ -28,12 +29,19 @@ function App() {
 
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
+  const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent-main");
+  const loaderCSSOverride = {
+    marginTop: "100px",
+    marginLeft: "auto",
+    marginRight: "auto",
+  };
+
   return (
     <Routes>
-      {!isFetchingCurrentUser && (
+      {!isFetchingCurrentUser ? (
         <Route path="/" element={<Layout />}>
           <Route
-            path=""
+            index
             element={isLoggedIn ? <DiaryPageView /> : <MainPage />}
           />
           <Route
@@ -61,7 +69,12 @@ function App() {
             }
           />
         </Route>
-      )}
+      ) :
+        <Route
+          path="*"
+          element={<CircleLoader color={accentColor} size={150} cssOverride={loaderCSSOverride} />}>
+        </Route>
+      }
     </Routes>
   );
 }
