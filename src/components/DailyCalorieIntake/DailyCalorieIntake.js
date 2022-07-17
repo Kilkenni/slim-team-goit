@@ -3,7 +3,7 @@ import Button from '../Button/index';
 import styles from './DailyCalorieIntake.module.scss';
 import { useNavigate } from 'react-router-dom';
 
-function DailyCalorieIntake({ calories, foodsList, onClose }) {
+  function DailyCalorieIntake({ foodsList, onClose }) {
   let navigate = useNavigate();
 
   const handleClick = () => {
@@ -17,7 +17,7 @@ function DailyCalorieIntake({ calories, foodsList, onClose }) {
           Рекомендоване денне споживання поживних речовин в калоріях становить
         </h2>
         <p className={styles['modal-content__calories']}>
-          {calories} <span>ккал</span>
+          {foodsList.calories} <span>ккал</span>
         </p>
       </div>
       <div className={styles['modal-content__inner']}>
@@ -25,11 +25,11 @@ function DailyCalorieIntake({ calories, foodsList, onClose }) {
           Продукти, які ви не повинні їсти
         </h3>
         <ol className={styles['modal-content__list']}>
-          {foodsList.map(food => (
-            <li key={food} className={styles['modal-content__item']}>
-              <p className={styles['modal-content__text']}>{food}</p>
-            </li>
-          ))}
+        {foodsList.notAllowedProducts.map(({ _id, title}) => (
+          <li key={_id} className={styles['modal-content__item']}>
+            <p className={styles['modal-content__text']}>{title.ua}</p>
+          </li>
+        ))}
         </ol>
       </div>
       <Button

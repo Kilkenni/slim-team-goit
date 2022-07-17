@@ -5,6 +5,7 @@ import Button from '../Button/index';
 import styles from './DailyCaloriesForm.module.scss';
 import Modal from '../Modal';
 import DailyCalorieIntake from '../DailyCalorieIntake';
+import { getPublicData } from '..//../js/backendAPI'
 
 import * as yup from 'yup';
 
@@ -23,14 +24,14 @@ const schema = yup.object().shape({
     .max(100, 'Вкажіть значення до 100')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
-  CurrentW: yup
+    currentWeight: yup
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(20, 'Вкажіть значення більше 20')
     .max(500, 'Вкажіть значення до 500')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
-  DesiredW: yup
+    desiredWeight: yup
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(20, 'Вкажіть значення більше 20')
@@ -40,49 +41,31 @@ const schema = yup.object().shape({
 });
 
 function DailyCaloriesForm() {
-  const [blood, setBlood] = useState(null);
-  const [calc, setCalc] = useState(null);
-
+  const [list, setList ] = useState()
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
 
-  const foodsList = ['Flour products', 'Milk', 'Red meat', 'Smoked meats'];
-
-  useEffect(() => {
-    console.log(calc);
-    console.log(blood);
-  }, [blood]);
-
   const submitForm = (values, { resetForm }) => {
-    const { height, age, CurrentW, DesiredW, Blood } = values;
-    const value =
-      10 * CurrentW +
-      6.25 * height -
-      5 * age -
-      161 -
-      10 * (CurrentW - DesiredW);
-    setCalc(parseInt(value));
-    setBlood(Blood);
+    getPublicData(values).then(setList);
     resetForm({ values: '' });
     toggleModal();
   };
 
   return (
     <Fragment>
-      {showModal && (
+      {showModal && list && (
         <Modal onClose={toggleModal}>
           <DailyCalorieIntake
-            calories={calc}
-            foodsList={foodsList}
+            foodsList={list}
             onClose={toggleModal}
           />
         </Modal>
       )}
       <Formik
-        initialValues={{ height: '', age: '', CurrentW: '', DesiredW: '' }}
+        initialValues={{ height: '', age: '', currentWeight: '', desiredWeight: '' }}
         validationSchema={schema}
         validateOnChange={true}
         validateOnBlur={false}
@@ -129,8 +112,8 @@ function DailyCaloriesForm() {
               </div>
               <div className={styles['field__wrapper']}>
                 <Field
-                  type="CurrentW"
-                  name="CurrentW"
+                  type="currentWeight"
+                  name="currentWeight"
                   placeholder="Вага *"
                   className={
                     errors.CurrentW && touched.CurrentW
@@ -139,15 +122,15 @@ function DailyCaloriesForm() {
                   }
                 />
                 <ErrorMessage
-                  name="CurrentW"
+                  name="currentWeight"
                   component="div"
                   className={styles['subtitle-error']}
                 />
               </div>
               <div className={styles['field__wrapper']}>
                 <Field
-                  type="DesiredW"
-                  name="DesiredW"
+                  type="desiredWeight"
+                  name="desiredWeight"
                   placeholder="Цільова вага *"
                   className={
                     errors.DesiredW && touched.DesiredW
@@ -156,7 +139,7 @@ function DailyCaloriesForm() {
                   }
                 />
                 <ErrorMessage
-                  name="DesiredW"
+                  name="desiredWeight"
                   component="div"
                   className={styles['subtitle-error']}
                 />
@@ -173,7 +156,7 @@ function DailyCaloriesForm() {
                     I
                     <Field
                       type="radio"
-                      name="Blood"
+                      name="bloodType"
                       value="1"
                       className={styles['radioItem']}
                     />
@@ -183,7 +166,7 @@ function DailyCaloriesForm() {
                     II
                     <Field
                       type="radio"
-                      name="Blood"
+                      name="bloodType"
                       value="2"
                       className={styles['radioItem']}
                     />
@@ -193,7 +176,7 @@ function DailyCaloriesForm() {
                     III
                     <Field
                       type="radio"
-                      name="Blood"
+                      name="bloodType"
                       value="3"
                       className={styles['radioItem']}
                     />
@@ -203,7 +186,7 @@ function DailyCaloriesForm() {
                     IV
                     <Field
                       type="radio"
-                      name="Blood"
+                      name="bloodType"
                       value="4"
                       className={styles['radioItem']}
                     />
@@ -215,9 +198,9 @@ function DailyCaloriesForm() {
               <Button
                 id={'button-form'}
                 type="submit"
-                disabled={!(dirty && isValid && values.Blood)}
+                disabled={!(dirty && isValid && values.bloodType)}
                 className={
-                  !(dirty && isValid && values.Blood) ? 'disabled-btn' : ''
+                  !(dirty && isValid && values.bloodType) ? 'disabled-btn' : ''
                 }
                 title={'Почніть худнути'}
               />
