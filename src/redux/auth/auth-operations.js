@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://goit-slim-mom-backend.herokuapp.com';
 
 const token = {
   set(token) {
@@ -16,7 +16,7 @@ const token = {
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/users/signup', credentials);
+    const { data } = await axios.post('/api/auth/signup', credentials);
     token.set(data.token);
     toast.success(`User registered successfully!`);
     return data;
@@ -27,8 +27,8 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
-    token.set(data.token);
+    const { data } = await axios.post('/api/auth/login', credentials);
+    token.set(data.accessToken);
     return data;
   } catch (error) {   
     toast.error('Email or password is not correct');
@@ -37,7 +37,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axios.post('/users/logout');
+    await axios.post('/api/auth/logout');
     token.unset();
   } catch (error) {
    
