@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import { connect, useSelector } from 'react-redux';
+import { addProduct } from '../../redux/products/products-operations';
+import { getProducts } from '../../redux/products/products-selectors';
+import PropTypes from 'prop-types';
 import s from './ProductForm.module.scss';
 import {useForm} from 'react-hook-form'
 
-function ProductForm({ visibleForm }) {
+function ProductForm({onSubmit, visibleForm }) {
+  const products = useSelector(getProducts);
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -26,14 +32,26 @@ function ProductForm({ visibleForm }) {
         return;
     }
   };
-  const onSubmit = (e) => {
-    // e.preventDefault()
-    
+  const onHandleSubmit = () => {
+    // e.preventDefault();
+
+    if(products.some(product => product.name === name)) {
+      return alert(`${name} вже є у вашому списку`)
+    }
+    onSubmit({ name, number });
+
+    reset();
   }
+
+  const reset = () => {
+    setName('');
+    setNumber('');
+  }
+
   return (
-    <div className={`${s.block} `}>
+    <div className={s.block}>
       {visibleForm && 
-      <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
+      <form onSubmit={handleSubmit(onHandleSubmit)} className={s.form}>
         <label className={s.name}>
           <input
             {...register('name', {
@@ -46,10 +64,13 @@ function ProductForm({ visibleForm }) {
             onChange={handleInputChange}
             placeholder="Введіть назву продукту"
           />
-          {errors  && <span>{ errors.name?.message}</span>}
+          {errors  && <span className={s.messageName}>{ errors.name?.message}</span>}
         </label>
         <label className={s.gram}>
           <input
+            {...register('number', {
+              required:'Поле має бути заповнене'
+            })}
             type="number"
             name="number"
             className={s.inputGram}
@@ -57,6 +78,7 @@ function ProductForm({ visibleForm }) {
             onChange={handleInputChange}
             placeholder="Грами"
           />
+          {errors  && <span className={s.messageNumber}>{ errors.number?.message}</span>}
         </label>
         <button type='submit' className={s.button}>
           <p className={s.add}>Додати</p>
@@ -67,4 +89,12 @@ function ProductForm({ visibleForm }) {
   );
 }
 
-export default ProductForm;
+ProductForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => ({
+  onSubmit: text => dispatch(addProduct(text)),
+});
+
+export default connect(null, mapDispatchToProps)(ProductForm);
