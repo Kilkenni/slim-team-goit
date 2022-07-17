@@ -14,8 +14,8 @@ export default function Logo({...DOMprops}) {
   const isMobile = useMediaQuery(`(max-width: ${tabletSize})`);
   const logo = defaultLogo;
   return (
-    <NavLink to="/">
-      <div className={styles.logo} {...DOMprops}>
+    <NavLink to="/" {...DOMprops}>
+      <div className={styles.logo}>
         <img src={logo} alt="logo" className={styles.logo__img} />
         <div className={styles.logo__title}>
           <svg alt="logo title" width="106" height="16">
