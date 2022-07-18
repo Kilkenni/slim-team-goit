@@ -24,6 +24,7 @@
 } 
 
 .name {
+  position: relative;
   border-bottom: 1px solid var(--form-input);
   margin-bottom: 32px;
   @include mixins.mediaquery ("tablet", min) {
@@ -33,6 +34,7 @@
   }
 }
 .gram {
+  position: relative;
   border-bottom: 1px solid var(--form-input);
   margin-bottom: 60px;
   @include mixins.mediaquery ("tablet", min) {
@@ -123,4 +125,30 @@
   @include mixins.mediaquery ("tablet", min) {
     display: block;
   }
+}
+
+.messageName {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: var(--accent-main);
+}
+
+.messageNumber {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 10px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: var(--accent-main);
 }
