@@ -13,6 +13,15 @@ export const getPublicData = async values => {
   }
 };
 
+export const getProductsOfDay = async date => {
+    try {
+      const {data} = await axios.get(`/api/diary/${date}`); 
+      return data.data.productList;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 export async function getCurrentUser() {
   try {
     const response = await axiosInstance.get('users/current');
