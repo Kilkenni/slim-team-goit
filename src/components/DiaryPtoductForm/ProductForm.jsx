@@ -5,13 +5,15 @@ import { getProducts } from '../../redux/products/products-selectors';
 import PropTypes from 'prop-types';
 import s from './ProductForm.module.scss';
 import {useForm} from 'react-hook-form'
+import {getProductsSearch} from '..//..//js/backendAPI'
+
 
 function ProductForm({onSubmit, visibleForm }) {
   const products = useSelector(getProducts);
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-
+  getProductsSearch('гр')
   const{
     register,
     handleSubmit,
@@ -39,7 +41,6 @@ function ProductForm({onSubmit, visibleForm }) {
       return alert(`${name} вже є у вашому списку`)
     }
     onSubmit({ name, number });
-
     reset();
   }
 
