@@ -6,6 +6,7 @@ import { authOperations, authSelectors } from '../redux/auth';
 import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import RegisterRoute from './RegisterRoute';
 import "./App.module.scss"; //required for usable CSS variables on first render with React lazy()
 
 // import MainPage from "../pages/MainPage/index";
@@ -47,9 +48,9 @@ function App() {
           <Route
             path="register"
             element={
-              <PublicRoute restricted>
+              <RegisterRoute redirectTo="/login" restricted>
                 <RegisterPage />
-              </PublicRoute>
+              </RegisterRoute>
             }
           />
           <Route
