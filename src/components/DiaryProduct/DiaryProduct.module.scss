@@ -1,0 +1,90 @@
+@use "../_styles/colors";
+@use "../_styles/mixins" as mixins;
+@use "../_styles/default";
+@use "../_styles/fonts";
+
+.block {
+    margin-top: 32px;
+    @include mixins.mediaquery ("tablet", min) {
+        margin-top: 49px;
+    }
+}
+.buttonAdd {
+    display: flex;
+    justify-content: center;
+    font-family: 'Verdana';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: var(--background); 
+    width: 176px;
+    padding: 13px 46px;
+    background: var(--accent-main);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    border-radius: 30px;
+    border: 0.5px solid var(--accent-main);
+    margin: auto;
+    cursor: pointer;  
+    @include mixins.mediaquery ("tablet", min) {
+      align-items: center;
+      width: 48px;
+      height: 48px; 
+      border-radius: 50%;
+      padding: 0 0 2px 0;
+    }  
+  }
+  
+  .buttonAdd:hover {
+    background-color: var(--background);
+    color: var(--accent-main);
+    border: 0.5px solid var(--accent-main);
+    transition: all 250ms linear;
+    @include mixins.mediaquery ("tablet", min) {
+      margin: 0;
+    }
+  }
+
+  .buttonPlus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: var(--background); 
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-main);
+    box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+    border-radius: 30px;
+    border: 0.5px solid var(--accent-main);
+    margin: auto;
+    margin-top: 60px;
+    cursor: pointer;  
+    // @include mixins.mediaquery ("tablet", min) {
+    //   align-items: center;
+    //   width: 48px;
+    //   height: 48px; 
+    //   border-radius: 50%;
+    //   padding: 0 0 2px 0;
+    // }  
+}
+.plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 14px;
+    height: 14px;
+    margin-top: -4px;
+  }
+.buttonPlus:hover {
+    background-color: var(--background);
+    color: var(--accent-main);
+    border: 0.5px solid var(--accent-main);
+    transition: all 250ms linear;
+    @include mixins.mediaquery ("tablet", min) {
+      margin: 0;
+    }
+}
