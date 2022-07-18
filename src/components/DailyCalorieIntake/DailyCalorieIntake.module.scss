@@ -9,8 +9,6 @@
   @media screen and (min-width: 768px) {
     padding: 40px 80px 0;
   }
-  &__inner {
-  }
   &__title {
     margin-bottom: 40px;
     font-family: 'Verdana';
@@ -50,9 +48,7 @@
     flex-direction: column;
     grid-row-gap: 20px;
     list-style: auto;
-    color: #9B9FAA;
-  }
-  &__item {
+    color: #9b9faa;
   }
   &__text {
     @extend %fontSecond;
