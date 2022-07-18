@@ -22,18 +22,19 @@ export const getDiaryByDate = async date => {
   }
 };
 
-export const deleteProductById = async (id, body) => {
+export const deleteProductById = async (id, date) => {
   try {
-    const response = await axiosInstance.delete(`diary/${id}`, { body });
+    const response = await axiosInstance.delete(`diary/${id}`, { date: date });
     return response;
   } catch (error) {
     console.log('error');
   }
 };
+
 export const getProductsSearch = async search => {
   try {
     const response = await axiosInstance.get(`products/${search}`);
-    console.log(response);
+    // console.log(response);
     // return response.data.data
   } catch {
     console.log('error');

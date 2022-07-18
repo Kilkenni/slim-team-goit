@@ -6,25 +6,20 @@ import PropTypes from 'prop-types';
 import DiaryProductItem from '../DiaryPtoductItem/DiaryProductItem';
 import s from './DiaryProductList.module.scss';
 
-export default function DiaryProductList() {
-  const date = "16.07.2022"
+export default function DiaryProductList({date}) {
+  const normalDate = new Date(date).toLocaleDateString().replace(/\./g, ".")
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
 
  useEffect(() => {
     setLoading(true);
-   getDiaryByDate(date).then(data => {
-     console.log(data)
+   getDiaryByDate(normalDate).then(data => {
       setProducts(data);
       setLoading(false);
     });
- }, []);
+ }, [normalDate]);
   
-  //   const handleChange = () => {
-  //   setVisibleForm(true)
-  //   setVisibleList(false)
-  // }
-  
+
     return (
     
     <div className={s.block}>
@@ -39,14 +34,11 @@ export default function DiaryProductList() {
             title={title}
             weight={weight}
             calories={calories}
-            date={date}
+            date={normalDate}
             
           />
         ))}
       </ul>)}  
-      {/* <button onClick={handleChange} className={s.button}>
-        <span className={s.plus}>+</span>
-      </button>      */}
     </div>
   );
 
