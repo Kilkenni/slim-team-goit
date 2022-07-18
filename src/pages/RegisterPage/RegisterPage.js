@@ -28,9 +28,9 @@ const initialValues = {
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [, setName] = useState('');
+  const [, setEmail] = useState('');
+  const [, setPassword] = useState('');
 
 
   const handleSubmit = ({ name, email, password }, { resetForm }) => {  

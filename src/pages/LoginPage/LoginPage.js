@@ -26,8 +26,8 @@ const initialValues = {
 
 export default function LoginView() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [, setEmail] = useState('');
+  const [, setPassword] = useState('');
 
 
 
