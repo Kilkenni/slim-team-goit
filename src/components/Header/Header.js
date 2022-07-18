@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { authSelectors } from '../../redux/auth';
 import { useMediaQuery } from '../../js/hooks';
@@ -14,7 +14,7 @@ import sprite from './sprite.svg';
 
 export default function Header() {
   // const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const [showModal, setShowModal] = useState(false);
@@ -38,10 +38,13 @@ export default function Header() {
       <div className={styles.top}>
         <Logo />
         {isLoggedIn && isDesktop && <Navigation />}
-        {isLoggedIn
-          ? !isMobile && <UserMenu />
-          : location.pathname !== '/login' &&
-            location.pathname !== '/register' && <AuthNavigation />}
+        {isLoggedIn ? (
+          !isMobile && <UserMenu />
+        ) : (
+          // location.pathname !== '/login' &&
+          // location.pathname !== '/register' &&
+          <AuthNavigation />
+        )}
         {!isDesktop && isLoggedIn && (
           <button type="button" className={styles.button} onClick={toggleModal}>
             <svg alt="menu icon" width="24" height="24" className={styles.icon}>
@@ -56,11 +59,7 @@ export default function Header() {
         </div>
       )}
 
-      {showModal && (
-        <ModalHeader onClose={toggleModal}>
-          <Navigation />
-        </ModalHeader>
-      )}
+      {showModal && <ModalHeader onClose={toggleModal} />}
     </header>
   );
 }

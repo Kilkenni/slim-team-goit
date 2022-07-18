@@ -8,13 +8,17 @@ import Container from "../../components/Container";
 
 const CalculatorPage = () => {
   const [date, setDate] = useState(new Date());
+  const[value, setValue]=useState({})
+  const handleFormSubmit = (value)=> {
+    setValue({value:value})
+  };
   return (
     <Container>
     <div className={styles.container_calculator}>
-    <h1 className={styles.container__title}>Розрахуйте добову норму прийому калорій прямо зараз</h1>
-      <DailyCaloriesForm />
+    <h1 className={styles.container__title}>Розрахуйте добову норму калорій прийом прямо зараз</h1>
+      <DailyCaloriesForm onSumbForm={handleFormSubmit} />
       </div>
-      <RightSideBar date={date}/>
+      <RightSideBar date={date} value={value}/>
     </Container>
   );
 };

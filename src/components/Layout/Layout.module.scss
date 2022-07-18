@@ -2,7 +2,7 @@
 .container {
   margin-left: auto;
   margin-right: auto;
-  width: 320px;
+  min-width: 320px;
 
   @include mixins.mediaquery('tablet', min) {
     width: 768px;

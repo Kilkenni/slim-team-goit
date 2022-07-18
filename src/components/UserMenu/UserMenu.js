@@ -3,7 +3,7 @@ import { authSelectors, authOperations } from '../../redux/auth';
 
 import styles from './UserMenu.module.scss';
 
-export default function UserMenu() {
+export default function UserMenu({ ...DOMprops }) {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUsername);
 
@@ -15,6 +15,7 @@ export default function UserMenu() {
         className={styles.button}
         type="button"
         onClick={() => dispatch(authOperations.logOut())}
+        {...DOMprops}
       >
         Вийти
       </button>
