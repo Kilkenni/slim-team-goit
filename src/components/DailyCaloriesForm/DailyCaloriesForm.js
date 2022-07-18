@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Button from '../Button/index';
 import styles from './DailyCaloriesForm.module.scss';
 import Modal from '../Modal';
 import DailyCalorieIntake from '../DailyCalorieIntake';
-import { getPublicData } from '..//../js/backendAPI'
+import { getPublicData } from '..//../js/backendAPI';
 import { authSelectors } from '../../redux/auth';
-import {useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import * as yup from 'yup';
 
@@ -26,14 +26,14 @@ const schema = yup.object().shape({
     .max(100, 'Вкажіть значення до 100')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
-    currentWeight: yup
+  currentWeight: yup
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(20, 'Вкажіть значення більше 20')
     .max(500, 'Вкажіть значення до 500')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
-    desiredWeight: yup
+  desiredWeight: yup
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(20, 'Вкажіть значення більше 20')
@@ -42,11 +42,10 @@ const schema = yup.object().shape({
     .required("Обов'язкове поле"),
 });
 
-function DailyCaloriesForm({onSumbForm}) {
-  const [list, setList ] = useState()
+function DailyCaloriesForm({ onSumbForm }) {
+  const [list, setList] = useState();
   const [showModal, setShowModal] = useState(false);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -56,7 +55,7 @@ function DailyCaloriesForm({onSumbForm}) {
     getPublicData(values).then(setList);
     resetForm({ values: '' });
     if (!isLoggedIn) {
-    toggleModal();
+      toggleModal();
     }
     onSumbForm(values);
   };
@@ -65,14 +64,16 @@ function DailyCaloriesForm({onSumbForm}) {
     <Fragment>
       {showModal && list && (
         <Modal onClose={toggleModal}>
-          <DailyCalorieIntake
-            foodsList={list}
-            onClose={toggleModal}
-          />
+          <DailyCalorieIntake foodsList={list} onClose={toggleModal} />
         </Modal>
       )}
       <Formik
-        initialValues={{ height: '', age: '', currentWeight: '', desiredWeight: '' }}
+        initialValues={{
+          height: '',
+          age: '',
+          currentWeight: '',
+          desiredWeight: '',
+        }}
         validationSchema={schema}
         validateOnChange={true}
         validateOnBlur={false}
