@@ -4,19 +4,19 @@ import { authOperations } from '../../redux/auth';
 import styles from './LoginPage.module.scss';
 import s from '../../pages/MainPage/MainPage.module.scss';
 
-import banana from "../../components/MainPage/images/banana.png";
-import strawberry from "../../components/MainPage/images/strawberry.png";
-import leaves from "../../components/MainPage/images/leaves-new.png";
-import leavesTable from "../../components/MainPage/images/leaves-table-new.png";
-import mainVector from "../../components/MainPage/images/main-vector.svg";
-// import '../../components/App.scss';
+import banana from "../../pages/MainPage/images/banana.png";
+import strawberry from "../../pages/MainPage/images/strawberry.png";
+import leaves from "../../pages/MainPage/images/leaves-new.png";
+import leavesTable from "../../pages/MainPage/images/leaves-table-new.png";
+import mainVector from "../../pages/MainPage/images/main-vector.svg";
+
 
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
  
 const schema = yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().min(5).required(),
+  email: yup.string().required("Обов'язкове поле").email('Електронна адреса має бути дійсною'),
+  password: yup.string().min(8,'Пароль має бути не менше 8 символів').required("Обов'язкове поле"),
 });
 
 const initialValues = {
