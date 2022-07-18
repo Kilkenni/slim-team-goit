@@ -17,23 +17,42 @@ const token = {
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const axiosResponse = await axios.post('/api/auth/signup', credentials);
-    console.log(axiosResponse.data.data);
+
     // token.set(axiosResponse.data.data.accessToken);
     toast.success(`User registered successfully!`);
     return axiosResponse.data;
   } catch (error) {    
-    toast.error('This user already exists');
+    if (error.response.status === 400) {
+      toast.error('Bad request');
+    }
+    if (error.response.status === 409) {
+      toast.error('Email in use');
+    }
+    if (error.response.status === 500) {
+      toast.error('Internal Server Error');
+    } 
   }
 });
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const axiosResponse = await axios.post('/api/auth/login', credentials);
-    console.log(axiosResponse.data.data);
+
     token.set(axiosResponse.data.data.accessToken);
     return axiosResponse.data.data;
-  } catch (error) {   
-    toast.error('Email or password is not correct');
+  } catch (error) {      
+    if (error.response.status === 403) {
+      toast.error('Wrong email or password');
+    }
+    if (error.response.status === 400) {
+      toast.error('Bad request');
+    }
+    if (error.response.status === 404) {
+      toast.error('Not found');
+    }
+    if (error.response.status === 500) {
+      toast.error('Internal Server Error');
+    } 
   }
 });
 
