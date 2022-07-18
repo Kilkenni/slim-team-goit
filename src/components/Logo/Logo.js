@@ -6,7 +6,7 @@ import { authSelectors } from '../../redux/auth';
 import { useMediaQuery } from '../../js/hooks';
 import { useSelector } from 'react-redux';
 
-export default function Logo() {
+export default function Logo({ ...DOMprops }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const tabletSize = getComputedStyle(
     document.documentElement
@@ -14,7 +14,7 @@ export default function Logo() {
   const isMobile = useMediaQuery(`(max-width: ${tabletSize})`);
   const logo = defaultLogo;
   return (
-    <NavLink to="/">
+    <NavLink to="/" {...DOMprops}>
       <div className={styles.logo}>
         <img src={logo} alt="logo" className={styles.logo__img} />
         <div className={styles.logo__title}>
