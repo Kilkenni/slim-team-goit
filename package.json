@@ -2,6 +2,7 @@
   "name": "slim-team-goit",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kilkenni.github.io/slim-team-goit/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.4",
