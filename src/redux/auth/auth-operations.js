@@ -1,22 +1,19 @@
-import axios from 'axios';
+import {axiosInstance} from "../../js/backendAPI"; //не потребує окремого налаштування адреси хоста, вона вже записана в цьому instance
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-
-axios.defaults.baseURL = 'https://goit-slim-mom-backend.herokuapp.com';
-
 const token = {
   set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    axiosInstance.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axios.defaults.headers.common.Authorization = '';
+    axiosInstance.headers.common.Authorization = '';
   },
 };
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const axiosResponse = await axios.post('/api/auth/signup', credentials);
+    const axiosResponse = await axiosInstance.post('/auth/signup', credentials);
 
     // token.set(axiosResponse.data.data.accessToken);
     toast.success(`User registered successfully!`);
@@ -36,7 +33,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const axiosResponse = await axios.post('/api/auth/login', credentials);
+    const axiosResponse = await axiosInstance.post('/auth/login', credentials);
 
     token.set(axiosResponse.data.data.accessToken);
     return axiosResponse.data.data;
@@ -58,7 +55,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axios.post('/api/auth/logout');
+    await axiosInstance.post('/auth/logout');
     token.unset();
   } catch (error) {
    
@@ -76,7 +73,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await axiosInstance.get('/users/current');
       return data;
     } catch (error) {
       
