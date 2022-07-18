@@ -13,6 +13,15 @@ export const getPublicData = async (values) => {
   }
 };
 
+export const setPrivatUserData = async (values) => {
+  try {
+    const response = await axiosInstance.put('users', values);
+    return response.data.data
+  } catch {
+    console.log("error");
+  }
+};
+
 export const getProductsSearch = async (search) => {
   try {
     const response = await axiosInstance.get(`products/${search}`);
