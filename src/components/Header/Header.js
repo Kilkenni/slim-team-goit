@@ -59,11 +59,7 @@ export default function Header() {
         </div>
       )}
 
-      {showModal && (
-        <ModalHeader onClose={toggleModal}>
-          <Navigation />
-        </ModalHeader>
-      )}
+      {showModal && <ModalHeader onClose={toggleModal} />}
     </header>
   );
 }

@@ -4,16 +4,12 @@ import { useEffect } from "react";
 import { useMediaQuery } from "../../js/hooks";
 import btnClose from "./btnClose.svg";
 import Logo from "../Logo"
+import Navigation from '../Navigation';
 import UserMenu from "../UserMenu";
 
 const modalRoot = document.querySelector("#modal-root");
 
-/**
- * 
- * @param {!function} onClose - функція, яка вимикає модальне вікно
- * @returns Модальне вікно з контентом, переданим як діти. В мобільній версії автоматично включає в себе Header.
- */
-function ModalHeader({ onClose, children, ...otherProps }) {
+function ModalHeader({ onClose, ...otherProps }) {
   const tabletSize = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-tablet");
   const isMobile = useMediaQuery(`(max-width: ${tabletSize})`);
 
@@ -49,7 +45,7 @@ function ModalHeader({ onClose, children, ...otherProps }) {
           </button>
         </div>
         <div className={styles.contentBlock}>
-          {children}
+          <Navigation onClick={() => onClose(true)}/>
         </div>   
       </div> 
     </div>
