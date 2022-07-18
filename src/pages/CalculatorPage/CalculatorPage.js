@@ -11,7 +11,7 @@ const CalculatorPage = () => {
   return (
     <Container>
     <div className={styles.container_calculator}>
-    <h1 className={styles.container__title}>Розрахуйте добову норму калорій прийом прямо зараз</h1>
+    <h1 className={styles.container__title}>Розрахуйте добову норму прийому калорій прямо зараз</h1>
       <DailyCaloriesForm />
       </div>
       <RightSideBar date={date}/>
