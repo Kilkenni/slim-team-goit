@@ -16,10 +16,11 @@ const token = {
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/api/auth/signup', credentials);
-    token.set(data.token);
+    const axiosResponse = await axios.post('/api/auth/signup', credentials);
+    console.log(axiosResponse.data.data);
+    // token.set(axiosResponse.data.data.accessToken);
     toast.success(`User registered successfully!`);
-    return data;
+    return axiosResponse.data;
   } catch (error) {    
     toast.error('This user already exists');
   }
@@ -27,9 +28,10 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/api/auth/login', credentials);
-    token.set(data.accessToken);
-    return data;
+    const axiosResponse = await axios.post('/api/auth/login', credentials);
+    console.log(axiosResponse.data.data);
+    token.set(axiosResponse.data.data.accessToken);
+    return axiosResponse.data.data;
   } catch (error) {   
     toast.error('Email or password is not correct');
   }
