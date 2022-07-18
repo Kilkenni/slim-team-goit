@@ -37,7 +37,7 @@ function ModalHeader({ onClose, ...otherProps }) {
       <div className={styles.modal}>
         <div className={styles.header}>
           <Logo onClick={() => onClose(true)}/>
-          {!isMobile && <UserMenu />}
+          {!isMobile && <UserMenu onClick={() => onClose(true)}/>}
           <button type="button" className={styles.button} onClick={onClose}>
             <svg alt="menu icon" width="18" height="18" className={styles.icon}>
               <use href={`${btnClose}#btnClose`}></use>
