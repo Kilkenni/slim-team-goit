@@ -4,10 +4,10 @@ import { toast } from 'react-toastify';
 
 const token = {
   set(token) {
-    axiosInstance.headers.common.Authorization = `Bearer ${token}`;
+    axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    axiosInstance.headers.common.Authorization = '';
+    axiosInstance.defaults.headers.common.Authorization = '';
   },
 };
 
@@ -37,7 +37,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
     token.set(axiosResponse.data.data.accessToken);
     return axiosResponse.data.data;
-  } catch (error) {      
+  } catch (error) {
     if (error.response.status === 403) {
       toast.error('Wrong email or password');
     }
