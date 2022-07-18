@@ -6,6 +6,7 @@ import styles from './DailyCaloriesForm.module.scss';
 import Modal from '../Modal';
 import DailyCalorieIntake from '../DailyCalorieIntake';
 import { getPublicData } from '..//../js/backendAPI'
+import { setPrivatUserData } from '..//../js/backendAPI'
 import { authSelectors } from '../../redux/auth';
 import {useSelector } from 'react-redux';
 
@@ -52,14 +53,21 @@ function DailyCaloriesForm({onSumbForm}) {
     setShowModal(!showModal);
   };
 
-  const submitForm = (values, { resetForm }) => {
-    getPublicData(values).then(setList);
+  const token = useSelector(authSelectors.getUserToken);
+
+const submitForm = (values, { resetForm }) => {
+   
+    setPrivatUserData(values, token).then(response=>{return response} )
     resetForm({ values: '' });
     if (!isLoggedIn) {
+    getPublicData(values).then(setList);
     toggleModal();
     }
     onSumbForm(values);
   };
+
+
+
 
   return (
     <Fragment>
