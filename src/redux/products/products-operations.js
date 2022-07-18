@@ -1,12 +1,14 @@
+import { axiosInstance } from '../../js/backendAPI';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
-  async () => {
+  async date => {
     try {
-      const { data } = await axios.get('/api/products/');
-      return data;
+      const response = await axiosInstance.get(`/diary/${date}`);
+      console.log.response;
+      return response.data.data;
     } catch (error) {
       console.log(error);
     }
@@ -17,7 +19,7 @@ export const deleteProduct = createAsyncThunk(
   'product/deleteProduct',
   async productId => {
     try {
-      await axios.delete(`/api/diary/${productId}`);
+      await axiosInstance.delete(`/diary/${productId}`);
       return productId;
     } catch (error) {
       console.log(error);
@@ -27,13 +29,13 @@ export const deleteProduct = createAsyncThunk(
 
 export const addProduct = createAsyncThunk(
   'products/addProduct',
-  async ({ name, number }) => {
-    console.log(name, number)
+  async ({ date, title, weight }) => {
+    console.log(title, weight);
     try {
-      const product = { name, number };
+      const product = { date, title, weight };
 
-      const { data } = await axios.post('/api/diary/', product);
-      return data;
+      const response = await axiosInstance.post('/diary/', product);
+      return response.data.data;
     } catch (error) {
       console.log(error);
     }

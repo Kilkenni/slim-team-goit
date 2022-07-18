@@ -1,32 +1,33 @@
 import PropTypes from 'prop-types';
+import { deleteProductById } from '..//../js/backendAPI';
 import s from './DiaryProductItem.module.scss';
 
-const DiaryProductItem = ({ name, number, calory, onClick }) => (
+const DiaryProductItem = ({ title, weight, calories, id, date }) => (
   <li className={s.item}>
     <p className={s.text}>
       {/* Продукт */}
-      {name}
+      {title}
     </p>
     <p className={s.text}>
-      {number}
+      {weight}
       {/* 200 */}
     <span className={s.size}>г</span>
     </p>
     <p className={s.text}>
-      {calory}
+      {calories}
       {/* 560 */}
     <span className={s.size}>ккал</span>
     </p>
-    <button type="button" className={s.button} onClick={onClick}>
+    <button type="button" className={s.button} onClick={() => { deleteProductById(id, {date: date}) }}>
       &#10006;
     </button>
   </li>
 );
 DiaryProductItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string,
-  calory: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  weight: PropTypes.number,
+  calories: PropTypes.number,
+  id:PropTypes.string.isRequired,
 };
 
 
