@@ -13,7 +13,7 @@ import * as yup from 'yup';
 
 const schema = yup.object().shape({
   height: yup
-    .number()
+    .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(100, 'Вкажіть значення більше 100')
     .max(250, 'Вкажіть значення до 250')

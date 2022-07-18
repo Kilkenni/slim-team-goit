@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
   const handleClick = () => {
     onClose();
-    navigate('/login', { replace: true });
+    navigate('/register', { replace: true });
   };
   return (
     <div className={styles['modal-content']}>

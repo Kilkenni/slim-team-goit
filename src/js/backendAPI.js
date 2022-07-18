@@ -30,3 +30,12 @@ export const deleteProductById = async (id, body) => {
     console.log('error');
   }
 };
+export const getProductsSearch = async search => {
+  try {
+    const response = await axiosInstance.get(`products/${search}`);
+    console.log(response);
+    // return response.data.data
+  } catch {
+    console.log('error');
+  }
+};
