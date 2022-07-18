@@ -73,8 +73,8 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axiosInstance.get('/users/current');
-      return data;
+      const axiosResponse = await axiosInstance.get('/users/current');
+      return axiosResponse.data.data;
     } catch (error) {
       
     }
