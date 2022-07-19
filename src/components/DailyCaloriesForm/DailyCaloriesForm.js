@@ -8,6 +8,7 @@ import DailyCalorieIntake from '../DailyCalorieIntake';
 import { getPublicData } from '..//../js/backendAPI';
 import { authSelectors } from '../../redux/auth';
 import { useSelector } from 'react-redux';
+import { setPrivatUserData } from '..//../js/backendAPI'
 
 import * as yup from 'yup';
 
@@ -52,11 +53,14 @@ function DailyCaloriesForm({ onSumbForm }) {
   };
 
   const submitForm = (values, { resetForm }) => {
-    getPublicData(values).then(setList);
-    resetForm({ values: '' });
     if (!isLoggedIn) {
+      getPublicData(values).then(setList);
       toggleModal();
     }
+ else {
+  setPrivatUserData(values).then(response=>{return response} )
+}
+resetForm({ values: '' });
     onSumbForm(values);
   };
 
