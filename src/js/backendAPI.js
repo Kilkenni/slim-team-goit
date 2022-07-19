@@ -14,26 +14,30 @@ export const getPublicData = async values => {
 };
 
 export const getDiaryByDate = async date => {
-  const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`; //додати 0, якщо день не більше 9
-  const month = date.getMonth() > 9 ? date.getMonth() : `0${date.getMonth()}`; //додати 0, якщо місяць не більше 9
-  const year = date.getFullYear();
-  const dateForBackend = `${day}.${month}.${year}`;
-  console.log(dateForBackend);
-  // const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, ".")
+  // const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`; //додати 0, якщо день не більше 9
+  // const month = date.getMonth() > 9 ? date.getMonth() : `0${date.getMonth()}`; //додати 0, якщо місяць не більше 9
+  // const year = date.getFullYear();
+  // const dateForBackend = `${day}.${month}.${year}`;
+  const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, '.');
   try {
-    // console.log(`date`, dateCurrent)
-    const response = await axiosInstance.get(`diary/${dateForBackend}`);
-    // console.log(response.data.data.productList)
-    return response.data.data;
+    const response = await axiosInstance.get(`diary/${dateCurrent}`);
+    return response.data.data.productList;
   } catch (error) {
     console.log('error');
   }
 };
 
 export const deleteProductById = async (id, date) => {
+  const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, '.');
   try {
-    const response = await axiosInstance.delete(`diary/${id}`, { date: date });
-    return response;
+    const response = await axiosInstance({
+      method: 'DELETE',
+      url: `diary/${id}`,
+      data: {
+        date: dateCurrent,
+      },
+    });
+    return response.data;
   } catch (error) {
     console.log('error');
   }

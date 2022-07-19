@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import { deleteProductById } from '..//../js/backendAPI';
 import s from './DiaryProductItem.module.scss';
 
-function DiaryProductItem ({ title, weight, calories, id, date }) {
+function DiaryProductItem ({ title, weight, calories, id, date,onDeleteItem }) {
 
 return (<li className={s.item}>
     <p className={s.text}>
@@ -19,7 +18,7 @@ return (<li className={s.item}>
       {/* 560 */}
       <span className={s.size}>ккал</span>
     </p>
-    <button type="button" className={s.button} onClick={() => { deleteProductById(id, date) }}>
+    <button type="button" className={s.button} onClick={() => onDeleteItem(id, date) }>
       &#10006;
     </button>
   </li>)
