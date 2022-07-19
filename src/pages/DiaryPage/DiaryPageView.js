@@ -12,12 +12,7 @@ export default function DiaryPageView() {
   const [item, setItem] = useState();
   const [products, setProducts] = useState();
 
-  const dateCurrent = date.toLocaleDateString().replace(/\./g, '.');
-
-  // useEffect(()=>{
-  //     getProductsDiary(dateCurrent).then(setItems)
-  // },[item])
-  // getProductsDiary(dateCurrent).then(setItems)
+  const dateCurrent = date.toLocaleDateString();
 
   useEffect(() => {
     getDiaryByDate(date).then(data => {
