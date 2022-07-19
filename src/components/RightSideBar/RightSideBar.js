@@ -5,6 +5,7 @@ import { getCurrentUser, getProductsOfDay } from '../../js/backendAPI';
 export default function RightSideBar({ date, userParams, userProducts }) {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
+  const chosenDate = date.toLocaleDateString().replace(/\./g, '.') 
 
   useEffect(() => {
     async function fetchUserData() {
@@ -23,14 +24,13 @@ export default function RightSideBar({ date, userParams, userProducts }) {
   }, [userParams, userProducts]);
 
   useEffect(() => {
-    async function fetchProductsOfDay(date) {
-      if (date) {
-        const productsAll = getProductsOfDay(date);
-        setProducts(productsAll);
+    async function fetchProductsOfDay() {
+      if (chosenDate || products) {
+        getProductsOfDay(chosenDate).then(setProducts)
       }
     }
     fetchProductsOfDay();
-  }, [date]);
+  }, [chosenDate, products]);
 
   const dailyRate = () => {
     if (userData?.parameters?.calories) {
@@ -40,18 +40,17 @@ export default function RightSideBar({ date, userParams, userProducts }) {
   };
 
   const totalCaloriesOfDay = () => {
-    let total = 0;
-
     if (products) {
-      for (const product of products) {
-        return (total += product.calories);
-      }
-    } else return 0;
+      return products.map(product => product.calories).reduce((previousValue, number) => {
+        return previousValue + number;
+      }, 0)
+      
+    } 
   };
 
   const dailyNorm = dailyRate(); //Добова норма
   const consumed = totalCaloriesOfDay(); //Спожито
-  const percentOfNormal = (consumed / dailyNorm) * 100; //n% від норми
+  const percentOfNormal = ((consumed / dailyNorm) * 100).toFixed(1); //n% від норми
   const left = dailyNorm - consumed; //Залишилось
 
   return (

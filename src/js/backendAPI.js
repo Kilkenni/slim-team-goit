@@ -43,9 +43,9 @@ export const deleteProductById = async (id, date) => {
   }
 };
 
-export const getProductsOfDay = async date => {
+export async function getProductsOfDay (date) {
   try {
-    const { data } = await axiosInstance.get(`/diary/${date}`);
+    const {data} = await axiosInstance.get(`diary/${date}`);
     return data.data.productList;
   } catch (error) {
     console.log(error);
