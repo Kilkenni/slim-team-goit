@@ -91,7 +91,8 @@ import debounce from 'lodash/debounce';
         <label className={s.gram}>
           <input
             {...register('number', {
-              required:'Поле має бути заповнене'
+              required: true,
+              min: 1
             })}
             type="number"
             name="number"
@@ -100,7 +101,8 @@ import debounce from 'lodash/debounce';
             onChange={handleInputChange}
             placeholder="Грами"
           />
-          {errors  && <span className={s.messageNumber}>{ errors.number?.message}</span>}
+          <span className={s.messageNumber}>{errors.number?.type === "required" && 'Поле має бути заповнене'}</span>
+          <span className={s.messageNumber}>{errors.number?.type === "min" && "Введіть додатнє значення"}</span>
         </label>
         <button type='submit' className={s.button}>
           <p className={s.add}>Додати</p>
