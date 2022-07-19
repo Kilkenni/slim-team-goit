@@ -18,7 +18,7 @@ export default function DiaryPageView() {
     getDiaryByDate(date).then(data => {
       setProducts(data);
     });
-  }, [date, item]);
+  }, [date, item, products]);
 
   const deleteProduct = (id, date) => {
     const response = deleteProductById(id, date);
