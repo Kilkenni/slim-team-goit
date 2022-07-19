@@ -89,8 +89,8 @@ export default function RegisterPage() {
         </label>
 
         <ul className={styles.list}>
-          <li className={styles.item}><a href='./login'><button type="button"  className={styles.btn}>Вхід</button></a></li>
-          <li className={styles.item}><button type="submit" className={styles.btn__second}>Реєстрація</button></li>           
+          <li className={styles.item}><a href='./login'><button type="button"  className={styles.btn__second}>Вхід</button></a></li>
+          <li className={styles.item}><button type="submit" className={styles.btn}>Реєстрація</button></li>           
         </ul>       
       </Form>
       </Formik>
