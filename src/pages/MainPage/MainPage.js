@@ -11,7 +11,7 @@ function MainPage() {
     <div className={styles['main']}>
       <div className={styles['main__content']}>
         <h1 className={styles['main__title']}>
-          Розрахуйте добову норму калорій прийом прямо зараз
+          Розрахуйте добову норму споживання калорій прямо зараз
         </h1>
         <DailyCaloriesForm />
       </div>
