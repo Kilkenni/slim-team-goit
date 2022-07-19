@@ -78,6 +78,7 @@ function DailyCaloriesForm({ onSumbForm }) {
           age: '',
           currentWeight: '',
           desiredWeight: '',
+          bloodType: '1',
         }}
         validationSchema={schema}
         validateOnChange={true}
@@ -93,7 +94,7 @@ function DailyCaloriesForm({ onSumbForm }) {
                 <Field
                   type="height"
                   name="height"
-                  placeholder="Ріст *"
+                  placeholder="Зріст *"
                   className={
                     errors.height && touched.height
                       ? styles['input-error']
@@ -144,7 +145,7 @@ function DailyCaloriesForm({ onSumbForm }) {
                 <Field
                   type="desiredWeight"
                   name="desiredWeight"
-                  placeholder="Цільова вага *"
+                  placeholder="Бажана вага *"
                   className={
                     errors.DesiredW && touched.DesiredW
                       ? styles['input-error']
