@@ -71,25 +71,25 @@ export default function RightSideBar({ userParams, userProducts }) {
           <li className={styles.item}>
             <p className={styles.text}>Залишилось</p>
             <span className={styles.text}>
-              {left ? `${left} ккал` : '0 ккал'}
+              {userData?.notAllowedProducts?.length ? `${left} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.text}>Спожито</p>
             <span className={styles.text}>
-              {consumed ? `${consumed} ккал` : '0 ккал'}
+              {userData?.notAllowedProducts?.length ? `${consumed} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.text}>Добова норма</p>
             <span className={styles.text}>
-              {dailyNorm ? `${dailyNorm} ккал` : '0 ккал'}
+              {userData?.notAllowedProducts?.length ? `${dailyNorm} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.last__text}>% від норми</p>
             <span className={styles.text}>
-              {percentOfNormal ? `${percentOfNormal.toFixed(1)} %` : '0 %'}
+              {userData?.notAllowedProducts?.length ? `${percentOfNormal.toFixed(1)} %` : '0 %'}
             </span>
           </li>
         </ul>
