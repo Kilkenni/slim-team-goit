@@ -47,8 +47,7 @@ font-style: normal;
 
 .label {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
+    flex-direction: column;    
     color: var(--text-normal);
     font-family: 'Verdana', sans-serif;
 
@@ -57,6 +56,10 @@ font-style: normal;
         font-size: 14px;
         line-height: 17px;
         letter-spacing: 0.04em;
+}
+
+.label+.label{
+    margin-top: 40px;
 }
 
 .input{

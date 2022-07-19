@@ -20,13 +20,13 @@ const register = createAsyncThunk('auth/register', async credentials => {
     return axiosResponse.data;
   } catch (error) {    
     if (error.response.status === 400) {
-      toast.error('Bad request');
+      toast.error('Поганий запит');
     }
     if (error.response.status === 409) {
-      toast.error('Email in use');
+      toast.error('Електронна пошта вже використовується');
     }
     if (error.response.status === 500) {
-      toast.error('Internal Server Error');
+      toast.error('Внутрішня помилка сервера');
     } 
   }
 });
@@ -39,16 +39,16 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     return axiosResponse.data.data;
   } catch (error) {
     if (error.response.status === 403) {
-      toast.error('Wrong email or password');
+      toast.error('Неправильна електронна адреса або пароль');
     }
     if (error.response.status === 400) {
-      toast.error('Bad request');
+      toast.error('Поганий запит');
     }
     if (error.response.status === 404) {
-      toast.error('Not found');
+      toast.error('Не знайдено');
     }
     if (error.response.status === 500) {
-      toast.error('Internal Server Error');
+      toast.error('Внутрішня помилка сервера');
     } 
   }
 });
