@@ -96,17 +96,17 @@ export default function RightSideBar({ userParams, userProducts }) {
       </div>
       <div className={styles.norecommended}>
         <h2 className={styles.header}>Не рекомендована їжа</h2>
-        <ol className={styles.list}>
+        <ul >
           {userData?.notAllowedProducts?.length ? (
             userData.notAllowedProducts.slice(0, 8).map(({ _id, title }) => (
-              <li key={_id} className={styles.item}>
-                <p className={styles.text}>{title.ua}</p>
+              <li key={_id} className={styles.text_item }>
+                <span>{title.ua}</span>
               </li>
             ))
           ) : (
             <p className={styles.text}>Тут відображатиметься ваша дієта</p>
           )}
-        </ol>
+        </ul>
       </div>
     </div>
   );

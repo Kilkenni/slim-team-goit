@@ -4,7 +4,7 @@
 
 
 .container {
-    height: calc(100vh - 86px);
+    height: calc(100vh);
     background-color: var(--background-shapes);
     padding-top: 20px;
     padding-left: 20px;
@@ -22,15 +22,11 @@
 } 
             
 @include mixins.mediaquery ("desktop", min) {
-    height: calc(100vh - 176px);
     display: block;
     width: 517px;
     padding: 140px 123px 166px 106px;   
     background-image: url('../../images/Diary-desktop.png');
-    background-repeat: no-repeat;
-    background-position: bottom 200px right 0px;
-    background-size: 428px, 602px;
-                        }
+    }
 }
 
 .summery {
@@ -40,7 +36,7 @@
 }
 
 .norecommended{
-    width: 280px;
+    
     @include mixins.mediaquery ("tablet", min) {
         width: 330px;
     }
@@ -84,6 +80,24 @@
     &:not(:last-child) {
             margin: 0px 0px 10px 0px;
         }
+}
+
+.text_item {
+    display: inline;
+    font-family: 'Verdana', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    color: var(--text-normal);
+    margin-bottom: 5px;
+    &:not(:first-child) {
+        text-transform: lowercase;
+    }
+    &:not(:last-child):after {
+        content: ', ';
+    }
 }
 
 .last__text {
