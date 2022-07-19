@@ -89,7 +89,7 @@ export default function RightSideBar({ userParams, userProducts }) {
           <li className={styles.item}>
             <p className={styles.last__text}>% від норми</p>
             <span className={styles.text}>
-              {!percentOfNormal ? `${percentOfNormal.toFixed(1)} %` : '0 %'}
+              {percentOfNormal ? `${percentOfNormal.toFixed(1)} %` : '0 %'}
             </span>
           </li>
         </ul>
