@@ -1,13 +1,12 @@
 import { axiosInstance } from '../../js/backendAPI';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async date => {
     try {
       const response = await axiosInstance.get(`/diary/${date}`);
-      console.log.response;
+      console.log(response);
       return response.data.data;
     } catch (error) {
       console.log(error);

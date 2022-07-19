@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getDiaryByDate } from '..//../js/backendAPI';
 // import { connect, useDispatch } from 'react-redux';
 // import { fetchProducts, deleteProduct } from '../../redux/products/products-operations';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import DiaryProductItem from '../DiaryPtoductItem/DiaryProductItem';
 import s from './DiaryProductList.module.scss';
 
