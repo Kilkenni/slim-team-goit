@@ -13,9 +13,35 @@ export const getPublicData = async values => {
   }
 };
 
+export const getDiaryByDate = async date => {
+  const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`; //додати 0, якщо день не більше 9
+  const month = date.getMonth() > 9 ? date.getMonth() : `0${date.getMonth()}`; //додати 0, якщо місяць не більше 9
+  const year = date.getFullYear();
+  const dateForBackend = `${day}.${month}.${year}`;
+  console.log(dateForBackend);
+  // const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, ".")
+  try {
+    // console.log(`date`, dateCurrent)
+    const response = await axiosInstance.get(`diary/${dateForBackend}`);
+    // console.log(response.data.data.productList)
+    return response.data.data;
+  } catch (error) {
+    console.log('error');
+  }
+};
+
+export const deleteProductById = async (id, date) => {
+  try {
+    const response = await axiosInstance.delete(`diary/${id}`, { date: date });
+    return response;
+  } catch (error) {
+    console.log('error');
+  }
+};
+
 export const getProductsOfDay = async date => {
   try {
-    const { data } = await axios.get(`/diary/${date}`);
+    const { data } = await axiosInstance.get(`/diary/${date}`);
     return data.data.productList;
   } catch (error) {
     console.log(error);
@@ -66,29 +92,17 @@ export const setPrivatUserData = async values => {
 export const getProductsSearch = async search => {
   try {
     const response = await axiosInstance.get(`products/${search}`);
-    return response.data.data.product
+    return response.data.data.product;
   } catch {
-    console.log("error");
+    console.log('error');
   }
 };
 
-export const addProductInDiary = async (values) => {
+export const addProductInDiary = async values => {
   try {
     // console.log(values)
     const response = await axiosInstance.post(`diary`, values);
-    return response.data.data
-  } catch {
-    console.log("error");
-  }
-};
-
-export const getProductsDiary = async (date) => {
-  // const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, ".")
-  try {
-    // console.log(`date`, dateCurrent)
-    const response = await axiosInstance.get(`diary/${date}`);
-    // console.log(response.data.data.productList)
-    return response;
+    return response.data.data;
   } catch {
     console.log('error');
   }

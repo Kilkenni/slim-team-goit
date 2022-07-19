@@ -1,70 +1,109 @@
-import { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { fetchProducts, deleteProduct } from '../../redux/products/products-operations';
+import { useState, useEffect } from 'react';
+import { getDiaryByDate } from '..//../js/backendAPI';
+// import { connect, useDispatch } from 'react-redux';
+// import { fetchProducts, deleteProduct } from '../../redux/products/products-operations';
 import PropTypes from 'prop-types';
 import DiaryProductItem from '../DiaryPtoductItem/DiaryProductItem';
 import s from './DiaryProductList.module.scss';
 
-const DiaryProductList = ({ products, onDeleteProduct, isLoading, setVisibleForm, setVisibleList}) => {
-  const dispatch = useDispatch();
+export default function DiaryProductList({date}) {
+  const normalDate = new Date(date).toLocaleDateString().replace(/\./g, ".")
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => dispatch(fetchProducts()), [dispatch]);
+ useEffect(() => {
+    setLoading(true);
+   getDiaryByDate(normalDate).then(data => {
+      setProducts(data);
+      setLoading(false);
+    });
+ }, [normalDate]);
+  
 
-  const handleChange = () => {
-    setVisibleForm(true)
-    setVisibleList(false)
-  }
-
-  return (
+    return (
     
     <div className={s.block}>
-      {isLoading ? (
+      {loading ? (
         <h1 style={{ textAlign: 'center', marginTop: 20 }}>Loading...</h1>
       ) :
       (<ul className={s.list}>
-        {products?.map(({ id, name, number, calory }) => (
+        {products?.map(({ _id, title, weight, calories }) => (
           <DiaryProductItem 
-            key={id}
-            name={name}
-            number={number}
-            calory={calory}
-            onClick={() => onDeleteProduct(id)}
+            key={_id}
+            id={_id}
+            title={title}
+            weight={weight}
+            calories={calories}
+            date={normalDate}
+            
           />
         ))}
       </ul>)}  
-      <button onClick={handleChange} className={s.button}>
-        <span className={s.plus}>+</span>
-      </button>     
     </div>
   );
-};
 
-DiaryProductList.propTypes = {
-  onDeleteContact: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string,
-      calory: PropTypes.string,
-    })
-  ),
-};
+}
 
-const getVisibleContacts = (products, filter) => {
-  const normalizedFilter = filter.toLowerCase();
+// const DiaryProductList = ({ products, onDeleteProduct, isLoading, setVisibleForm, setVisibleList}) => {
+//   const dispatch = useDispatch();
 
-  return products.filter(product =>
-    product.name.toLowerCase().includes(normalizedFilter)
-  );
-};
+//   useEffect(() => dispatch(fetchProducts()), [dispatch]);
+  
+  // const handleChange = () => {
+  //   setVisibleForm(true)
+  //   setVisibleList(false)
+  // }
 
-const mapStateToProps = ({ products: { items, filter } }) => ({
-  contacts: getVisibleContacts(items, filter),
-});
+  // return (
+    
+  //   <div className={s.block}>
+  //     {isLoading ? (
+  //       <h1 style={{ textAlign: 'center', marginTop: 20 }}>Loading...</h1>
+  //     ) :
+  //     (<ul className={s.list}>
+  //       {products?.map(({ id, name, number, calory }) => (
+  //         <DiaryProductItem 
+  //           key={id}
+  //           name={name}
+  //           number={number}
+  //           calory={calory}
+  //           onClick={() => onDeleteProduct(id)}
+  //         />
+  //       ))}
+  //     </ul>)}  
+  //     <button onClick={handleChange} className={s.button}>
+  //       <span className={s.plus}>+</span>
+  //     </button>     
+  //   </div>
+  // );
+// };
 
-const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(deleteProduct(id)),
-});
+// DiaryProductList.propTypes = {
+//   onDeleteContact: PropTypes.func.isRequired,
+//   products: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.string.isRequired,
+//       name: PropTypes.string.isRequired,
+//       number: PropTypes.string,
+//       calory: PropTypes.string,
+//     })
+//   ),
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DiaryProductList);
+// const getVisibleContacts = (products, filter) => {
+//   const normalizedFilter = filter.toLowerCase();
+
+//   return products.filter(product =>
+//     product.name.toLowerCase().includes(normalizedFilter)
+//   );
+// };
+
+// const mapStateToProps = ({ products: { items, filter } }) => ({
+//   contacts: getVisibleContacts(items, filter),
+// });
+
+// const mapDispatchToProps = dispatch => ({
+//   onDeleteContact: id => dispatch(deleteProduct(id)),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(DiaryProductList);

@@ -7,6 +7,7 @@ import s from './DiaryProduct.module.scss';
 
 const DiaryProduct = ({setItem, date}) => {
   // const [visibleForm, setVisibleForm] = useState(true);
+  // eslint-disable-next-line
   // const [visibleList, setVisibleList] = useState(true)
 
   // const tabletSize = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-tablet");
