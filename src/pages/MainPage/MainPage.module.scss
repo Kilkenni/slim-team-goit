@@ -1,6 +1,9 @@
 .main {
-  height: calc(100vh - 180px);
-  overflow: hidden;
+  height: calc(100vh - 90px);
+  @media screen and (min-width: 768px) {
+    height: calc(100vh - 180px);
+    overflow: hidden;
+  }
 }
 
 .main__content {
@@ -143,8 +146,6 @@
     bottom: 0;
   }
 }
-
-
 
 #banana {
   position: absolute;
