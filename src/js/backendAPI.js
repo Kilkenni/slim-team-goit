@@ -16,8 +16,29 @@ export const getPublicData = async (values) => {
 export const getProductsSearch = async (search) => {
   try {
     const response = await axiosInstance.get(`products/${search}`);
-    console.log(response)
-    // return response.data.data
+    return response.data.data.product
+  } catch {
+    console.log("error");
+  }
+};
+
+export const addProductInDiary = async (values) => {
+  try {
+    // console.log(values)
+    const response = await axiosInstance.post(`diary`, values);
+    return response.data.data
+  } catch {
+    console.log("error");
+  }
+};
+
+export const getProductsDiary = async (date) => {
+  // const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, ".")
+  try {
+    // console.log(`date`, dateCurrent)
+    const response = await axiosInstance.get(`diary/${date}`);
+    // console.log(response.data.data.productList)
+    return response
   } catch {
     console.log("error");
   }
