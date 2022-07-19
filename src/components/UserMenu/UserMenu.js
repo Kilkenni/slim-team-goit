@@ -18,13 +18,12 @@ export default function UserMenu({ ...DOMprops }) {
         type="button"
         onClick={() => {
           dispatch(authOperations.logOut());
-          // navigate('/login')
+          // navigate('/login');
         }}
         {...DOMprops}
       >
         Вийти
       </button>
-
       {/* </NavLink> */}
     </div>
   );

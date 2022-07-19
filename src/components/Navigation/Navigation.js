@@ -6,7 +6,7 @@ function Navigation({ ...DOMprops }) {
     <nav>
       <div className={styles.navigation}>
         <NavLink
-          to="/"
+          to="/diary"
           className={({ isActive }) => (isActive ? styles.active : styles.link)}
           {...DOMprops}
         >
