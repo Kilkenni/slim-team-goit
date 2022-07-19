@@ -61,6 +61,10 @@
     letter-spacing: 0.04em;
 }
 
+.label+.label {
+    margin-top: 40px;
+}
+
 .input {
     border: none;
     border-bottom: 1px solid #E0E0E0;
