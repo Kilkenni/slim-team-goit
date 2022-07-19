@@ -15,11 +15,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 const schema = yup.object().shape({
-  name: yup.string().min(3,'Імя має бути не менше 3 символів').max(16,'Імя має бути не більше 16 символів').required("Обов'язкове поле"),
+  name: yup.string().min(2,"Ім'я має бути не менше 2 символів").max(16,"Ім'я має бути не більше 16 символів").required("Обов'язкове поле"),
   email: yup.string().min(7,'Пошта має бути не менше 3 символів').max(254,'Пошта має бути не більше 254 символів').required("Обов'язкове поле").email('Електронна адреса має бути дійсною'),
   password: yup.string().min(8,'Пароль має бути не менше 8 символів').required("Обов'язкове поле").matches(
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-      "Має містити мінімум 8 символів, один в верхному регістру, один в нижньму регістру, одну цифру та один спеціальний символ"
+      "Має містити мінімум 8 символів, один у верхньому регістрі, один у нижньому регістрі, одну цифру та один спеціальний символ"
     ).max(56,'Пароль має бути не більше 56 символів'),
 });
 
@@ -47,7 +47,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
+    <div className={styles.box}>
       <div className={styles.container}>
       <div className={styles.title__container}>
         <h1 className={styles.title}>Реєстрація</h1>
@@ -89,8 +89,8 @@ export default function RegisterPage() {
         </label>
 
         <ul className={styles.list}>
-          <li className={styles.item}><a href='./login'><button type="button"  className={styles.btn}>Вхід</button></a></li>
-          <li className={styles.item}><button type="submit" className={styles.btn__second}>Реєстрація</button></li>           
+          <li className={styles.item}><a href='./login'><button type="button"  className={styles.btn__second}>Вхід</button></a></li>
+          <li className={styles.item}><button type="submit" className={styles.btn}>Реєстрація</button></li>           
         </ul>       
       </Form>
       </Formik>
