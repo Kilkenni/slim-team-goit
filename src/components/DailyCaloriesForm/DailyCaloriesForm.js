@@ -8,7 +8,7 @@ import DailyCalorieIntake from '../DailyCalorieIntake';
 import { getPublicData } from '..//../js/backendAPI';
 import { authSelectors } from '../../redux/auth';
 import { useSelector } from 'react-redux';
-import { setPrivatUserData } from '..//../js/backendAPI'
+import { setPrivatUserData } from '..//../js/backendAPI';
 
 import * as yup from 'yup';
 
@@ -56,11 +56,12 @@ function DailyCaloriesForm({ onSumbForm }) {
     if (!isLoggedIn) {
       getPublicData(values).then(setList);
       toggleModal();
+    } else {
+      setPrivatUserData(values).then(response => {
+        return response;
+      });
     }
- else {
-  setPrivatUserData(values).then(response=>{return response} )
-}
-resetForm({ values: '' });
+    resetForm({ values: '' });
     onSumbForm(values);
   };
 
@@ -171,6 +172,7 @@ resetForm({ values: '' });
                       name="bloodType"
                       value="1"
                       className={styles['radioItem']}
+                      checked
                     />
                     <span className={styles['checkmark']}></span>
                   </label>
