@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import styles from './RightSideBar.module.scss';
 import { getCurrentUser, getProductsOfDay } from '../../js/backendAPI';
 
-export default function RightSideBar({ date, userParams, userProducts }) {
+export default function RightSideBar({ userParams, userProducts }) {
   const [userData, setUserData] = useState(null);
   const [products, setProducts] = useState(null);
-  const chosenDate = date.toLocaleDateString().replace(/\./g, '.') 
+  const date = new Date().toLocaleDateString().replace(/\./g, '.') 
+  
 
   useEffect(() => {
     async function fetchUserData() {
@@ -19,18 +20,20 @@ export default function RightSideBar({ date, userParams, userProducts }) {
       }
       const currentUser = await getCurrentUser(); //а якщо не отримали - запитаємо ці параметри з бекенда
       setUserData(currentUser); //і теж запишемо в стейт
+
+
     }
     fetchUserData();
   }, [userParams, userProducts]);
 
   useEffect(() => {
     async function fetchProductsOfDay() {
-      if (chosenDate || products) {
-        getProductsOfDay(chosenDate).then(setProducts)
+      if (date || products) {
+        getProductsOfDay(date).then(setProducts)
       }
     }
     fetchProductsOfDay();
-  }, [chosenDate, products]);
+  }, [date, products]);
 
   const dailyRate = () => {
     if (userData?.parameters?.calories) {
@@ -48,40 +51,43 @@ export default function RightSideBar({ date, userParams, userProducts }) {
     } 
   };
 
+ 
+
   const dailyNorm = dailyRate(); //Добова норма
   const consumed = totalCaloriesOfDay(); //Спожито
-  const percentOfNormal = ((consumed / dailyNorm) * 100).toFixed(1); //n% від норми
+  const percentOfNormal = ((consumed / dailyNorm) * 100); //n% від норми
   const left = dailyNorm - consumed; //Залишилось
+
 
   return (
     <div className={styles.container}>
       <div className={styles.summery}>
         <h1 className={styles.header}>
-          Звіт на <span>{date.toLocaleDateString().replace(/\./g, '/')}</span>
+          Звіт на <span>{new Date().toLocaleDateString().replace(/\./g, '/')}</span>
         </h1>
         <ul className={styles.list}>
           <li className={styles.item}>
             <p className={styles.text}>Залишилось</p>
             <span className={styles.text}>
-              {left ? `${left} ккал` : 'невідомо'}
+              {left ? `${left} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.text}>Спожито</p>
             <span className={styles.text}>
-              {consumed ? `${consumed} ккал` : 'невідомо'}
+              {consumed ? `${consumed} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.text}>Добова норма</p>
             <span className={styles.text}>
-              {dailyNorm ? `${dailyNorm} ккал` : 'невідомо'}
+              {dailyNorm ? `${dailyNorm} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.last__text}>% від норми</p>
             <span className={styles.text}>
-              {percentOfNormal ? `${percentOfNormal} %` : 'невідомо'}
+              {percentOfNormal ? `${percentOfNormal.toFixed(1)} %` : '0 %'}
             </span>
           </li>
         </ul>
@@ -89,7 +95,7 @@ export default function RightSideBar({ date, userParams, userProducts }) {
       <div className={styles.norecommended}>
         <h2 className={styles.header}>Не рекомендована їжа</h2>
         <ol className={styles.list}>
-          {userData ? (
+          {userData?.notAllowedProducts?.length ? (
             userData.notAllowedProducts.slice(0, 8).map(({ _id, title }) => (
               <li key={_id} className={styles.item}>
                 <p className={styles.text}>{title.ua}</p>
