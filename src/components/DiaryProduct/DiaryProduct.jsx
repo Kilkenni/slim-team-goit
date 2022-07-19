@@ -1,5 +1,5 @@
 import { useState ,useEffect } from 'react';
-import DiaryProductList from '../DiaryPtoductList';
+// import DiaryProductList from '../DiaryPtoductList';
 import DiaryProductForm from '../DiaryPtoductForm';
 import s from './DiaryProduct.module.scss';
 
@@ -26,7 +26,7 @@ const DiaryProduct = () => {
   return (
     <div className={s.block}>
     <DiaryProductForm visibleForm={visibleForm} />
-    {visibleList && <DiaryProductList  setVisibleForm={setVisibleForm} setVisibleList={setVisibleList} /> }
+    {/* {visibleList && <DiaryProductList  setVisibleForm={setVisibleForm} setVisibleList={setVisibleList} /> } */}
     </div>
   );
 };

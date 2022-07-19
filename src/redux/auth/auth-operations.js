@@ -16,7 +16,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     const axiosResponse = await axiosInstance.post('/auth/signup', credentials);
 
     // token.set(axiosResponse.data.data.accessToken);
-    toast.success(`User registered successfully!`);
+    toast.success(`Ви успішно зареєструвалися! Тепер можете увійти.`);
     return axiosResponse.data;
   } catch (error) {    
     if (error.response.status === 400) {

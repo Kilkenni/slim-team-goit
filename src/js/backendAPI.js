@@ -14,13 +14,13 @@ export const getPublicData = async values => {
 };
 
 export const getProductsOfDay = async date => {
-    try {
-      const {data} = await axios.get(`/api/diary/${date}`); 
-      return data.data.productList;
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+    const { data } = await axios.get(`/api/diary/${date}`);
+    return data.data.productList;
+  } catch (error) {
+    console.log(error);
   }
+};
 
 export async function getCurrentUser() {
   try {
@@ -53,3 +53,22 @@ export async function updateCurrentUser({
     console.error(error);
   }
 }
+
+export const setPrivatUserData = async values => {
+  try {
+    const response = await axiosInstance.put('users', values);
+    return response.data.data;
+  } catch {
+    console.log('error');
+  }
+};
+
+export const getProductsSearch = async search => {
+  try {
+    const response = await axiosInstance.get(`products/${search}`);
+    console.log(response);
+    // return response.data.data
+  } catch {
+    console.log('error');
+  }
+};
