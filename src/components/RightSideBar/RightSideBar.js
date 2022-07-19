@@ -71,13 +71,13 @@ export default function RightSideBar({ userParams, userProducts }) {
           <li className={styles.item}>
             <p className={styles.text}>Залишилось</p>
             <span className={styles.text}>
-              {userData?.notAllowedProducts?.length ? `${left} ккал` : '0 ккал'}
+              {userData?.notAllowedProducts?.length ? `${left.toFixed(2)} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.text}>Спожито</p>
             <span className={styles.text}>
-              {userData?.notAllowedProducts?.length ? `${consumed} ккал` : '0 ккал'}
+              {userData?.notAllowedProducts?.length ? `${consumed.toFixed(2)} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
@@ -89,7 +89,7 @@ export default function RightSideBar({ userParams, userProducts }) {
           <li className={styles.item}>
             <p className={styles.last__text}>% від норми</p>
             <span className={styles.text}>
-              {userData?.notAllowedProducts?.length ? `${percentOfNormal.toFixed(1)} %` : '0 %'}
+              {userData?.notAllowedProducts?.length ? `${percentOfNormal.toFixed(0)} %` : '0 %'}
             </span>
           </li>
         </ul>
