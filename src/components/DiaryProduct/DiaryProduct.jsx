@@ -1,6 +1,6 @@
 // import { useState ,useEffect } from 'react';
 // import DiaryProductList from '../DiaryPtoductList';
-import DiaryProductForm from '../DiaryPtoductForm';
+import DiaryProductForm from '../DiaryProductForm';
 import s from './DiaryProduct.module.scss';
 
 // import { useMediaQuery } from "../../js/hooks";

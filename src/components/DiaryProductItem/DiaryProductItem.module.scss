@@ -7,16 +7,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 32px;
-  margin-bottom: 20px;
-  @include mixins.mediaquery ("tablet", min) {
-    margin-top: 60px;
-  }
+  margin-top: 15px;
+  // margin-bottom: 20px;
+  // @include mixins.mediaquery ("tablet", min) {
+  //   margin-top: 10px;
+  // }
 }
 
-.item:last-child {
-  margin-bottom: 0;
-}
+// .item:last-child {
+//   margin-bottom: 0;
+// }
 
 .text {
   font-family: 'Verdana';

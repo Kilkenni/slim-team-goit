@@ -4,31 +4,44 @@ import LeftSideBar from '../../components/LeftSideBar';
 import RightSideBar from '../../components/RightSideBar';
 import { useState, useEffect } from 'react';
 import DiaryProduct from '../../components/DiaryProduct';
-import DiaryProductList from '../../components/DiaryPtoductList';
-import { getDiaryByDate } from '..//../js/backendAPI';
+import DiaryProductList from '../../components/DiaryProductList';
+import { getDiaryByDate, deleteProductById } from '..//../js/backendAPI';
 
 export default function DiaryPageView() {
   const [date, setDate] = useState(new Date());
   const [item, setItem] = useState();
-  const [items, setItems] = useState();
+  const [products, setProducts] = useState();
+
   const dateCurrent = date.toLocaleDateString().replace(/\./g, '.');
+
   // useEffect(()=>{
   //     getProductsDiary(dateCurrent).then(setItems)
   // },[item])
   // getProductsDiary(dateCurrent).then(setItems)
 
   useEffect(() => {
-    getDiaryByDate(date).then(response => setItems(response.productList));
-  }, [date, item]);
+    getDiaryByDate(date).then(data => {
+      setProducts(data);
+    });
+  }, [date, item, products]);
 
-  console.log(items);
+  const deleteProduct = (id, date) => {
+    const response = deleteProductById(id, date);
+    if (response.code === 200) {
+      setProducts(products.filter(product => product._id !== id));
+    }
+  };
 
   return (
     <Container date={date}>
       <LeftSideBar>
         <DiaryDateСalendar onChangeDate={setDate} date={date} />
         <DiaryProduct setItem={setItem} date={dateCurrent} />
-        <DiaryProductList newItem={items} date={date} />
+        <DiaryProductList
+          products={products}
+          date={date}
+          onDeleteItem={deleteProduct}
+        />
       </LeftSideBar>
       <RightSideBar date={date} />
     </Container>
