@@ -1,25 +1,35 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
-// import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate, NavLink, Link } from 'react-router-dom';
 
 import styles from './UserMenu.module.scss';
 
 export default function UserMenu({ ...DOMprops }) {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUsername);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  function handleClick() {
+    dispatch(authOperations.logOut());
+    navigate('/login');
+  }
 
   return (
     <div className={styles.container}>
       <span className={styles.name}>{name}</span>
+      {/* <NavLink
+        to="/login"
+        className={styles.button}
+        onClick={() => dispatch(authOperations.logOut())}
+        {...DOMprops}
+      >
+        Вийти
+      </NavLink> */}
       {/* <NavLink to="/login"> */}
       <button
         className={styles.button}
         type="button"
-        onClick={() => {
-          dispatch(authOperations.logOut());
-          // navigate('/login');
-        }}
+        onClick={handleClick}
         {...DOMprops}
       >
         Вийти
