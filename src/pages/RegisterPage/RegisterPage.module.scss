@@ -3,6 +3,13 @@
 @use "../../components/_styles/fonts";
 @use "../../components/_styles/placeholders";
 
+.box {
+    @media screen and (max-width: 768px) {
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+    }
+}
 
 .container {
     margin-top: 160px;

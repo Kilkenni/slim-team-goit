@@ -47,7 +47,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
+    <div className={styles.box}>
       <div className={styles.container}>
       <div className={styles.title__container}>
         <h1 className={styles.title}>Реєстрація</h1>
