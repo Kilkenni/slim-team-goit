@@ -71,25 +71,25 @@ export default function RightSideBar({ userParams, userProducts }) {
           <li className={styles.item}>
             <p className={styles.text}>Залишилось</p>
             <span className={styles.text}>
-              {userData?.notAllowedProducts?.length ? `${left.toFixed(2)} ккал` : '0 ккал'}
+              {left && userData?.notAllowedProducts?.length ? `${left.toFixed(0)} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.text}>Спожито</p>
             <span className={styles.text}>
-              {userData?.notAllowedProducts?.length ? `${consumed.toFixed(2)} ккал` : '0 ккал'}
+              {consumed && userData?.notAllowedProducts?.length ? `${consumed.toFixed(0)} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.text}>Добова норма</p>
             <span className={styles.text}>
-              {userData?.notAllowedProducts?.length ? `${dailyNorm} ккал` : '0 ккал'}
+              {dailyNorm && userData?.notAllowedProducts?.length ? `${dailyNorm} ккал` : '0 ккал'}
             </span>
           </li>
           <li className={styles.item}>
             <p className={styles.last__text}>% від норми</p>
             <span className={styles.text}>
-              {userData?.notAllowedProducts?.length ? `${percentOfNormal.toFixed(0)} %` : '0 %'}
+              {percentOfNormal && userData?.notAllowedProducts?.length ? `${percentOfNormal.toFixed(0)} %` : '0 %'}
             </span>
           </li>
         </ul>
@@ -98,7 +98,7 @@ export default function RightSideBar({ userParams, userProducts }) {
         <h2 className={styles.header}>Не рекомендована їжа</h2>
         <ul >
           {userData?.notAllowedProducts?.length ? (
-            userData.notAllowedProducts.slice(0, 8).map(({ _id, title }) => (
+            userData.notAllowedProducts.slice(0, 9).map(({ _id, title }) => (
               <li key={_id} className={styles.text_item }>
                 <span>{title.ua}</span>
               </li>
