@@ -1,6 +1,7 @@
-import {axiosInstance} from "../../js/backendAPI"; //не потребує окремого налаштування адреси хоста, вона вже записана в цьому instance
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+
+import { axiosInstance } from '../../js/backendAPI'; //не потребує окремого налаштування адреси хоста, вона вже записана в цьому instance
 
 const token = {
   set(token) {
@@ -17,7 +18,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
     toast.success(`Ви успішно зареєструвалися! Тепер можете увійти.`);
     return axiosResponse.data;
-  } catch (error) {    
+  } catch (error) {
     if (error.response.status === 400) {
       toast.error('Поганий запит');
     }
@@ -26,7 +27,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     }
     if (error.response.status === 500) {
       toast.error('Внутрішня помилка сервера');
-    } 
+    }
   }
 });
 
@@ -48,17 +49,15 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     }
     if (error.response.status === 500) {
       toast.error('Внутрішня помилка сервера');
-    } 
+    }
   }
 });
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-  await axiosInstance.post('/auth/logout');
+    await axiosInstance.post('/auth/logout');
     token.unset();
-  } catch (error) {
-   
-  }
+  } catch (error) {}
 });
 
 const fetchCurrentUser = createAsyncThunk(
@@ -74,9 +73,7 @@ const fetchCurrentUser = createAsyncThunk(
     try {
       const axiosResponse = await axiosInstance.get('/users/current');
       return axiosResponse.data.data;
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }
 );
 
