@@ -11,7 +11,7 @@ export default function UserMenu({ ...DOMprops }) {
 
   function handleClick() {
     dispatch(authOperations.logOut());
-    navigate('/login');
+    navigate('/login', { replace: true });
   }
 
   return (
