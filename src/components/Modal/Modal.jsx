@@ -5,6 +5,7 @@ import Header from "../Header";
 import { useMediaQuery } from "../../js/hooks";
 import btnClose from "./btnClose.svg";
 import { useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -14,6 +15,15 @@ const modalRoot = document.querySelector("#modal-root");
  * @returns Модальне вікно з контентом, переданим як діти. В мобільній версії автоматично включає в себе Header.
  */
 function Modal({ onClose, children, ...otherProps }) {
+  let navigate = useNavigate();
+
+  const handleClick = () => {
+    onClose();
+    if (isMobile) {
+      navigate('/register', { replace: true });
+    }
+  };
+
   const tabletSize = getComputedStyle(document.documentElement).getPropertyValue("--breakpoint-tablet");
   const isMobile = useMediaQuery(`(max-width: ${tabletSize})`);
 
@@ -41,7 +51,7 @@ function Modal({ onClose, children, ...otherProps }) {
       <div className={styles.modal}>
         {isMobile && <Header />}
         <div className={styles.closeBlock}>
-          <button type="button" className={styles["btn-close"]} onClick={onClose}>
+          <button type="button" className={styles["btn-close"]} onClick={handleClick}>
             {isMobile ?
               <svg alt="Close icon" width="12" className={styles["btn-close-icon"]}>
                 <use href={btnClose + "#btnCloseMob"}></use>
