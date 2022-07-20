@@ -9,19 +9,19 @@ import { getDiaryByDate, deleteProductById } from '..//../js/backendAPI';
 
 export default function DiaryPageView() {
   const [date, setDate] = useState(new Date());
-  const [item, setItem] = useState();
-  const [products, setProducts] = useState();
+  const [item, setItem] = useState(null);
+  const [products, setProducts] = useState(null);
 
-  const dateCurrent = date.toLocaleDateString();
+  // const dateCurrent = date.toLocaleDateString();
 
   useEffect(() => {
     getDiaryByDate(date).then(data => {
       setProducts(data);
     });
-  }, [date, item, products]);
+  }, [date, item]);
 
-  const deleteProduct = (id, date) => {
-    const response = deleteProductById(id, date);
+  const deleteProduct = async (id, date) => {
+    const response = await deleteProductById(id, date);
     if (response.code === 200) {
       setProducts(products.filter(product => product._id !== id));
     }
@@ -31,14 +31,14 @@ export default function DiaryPageView() {
     <Container date={date}>
       <LeftSideBar>
         <DiaryDateСalendar onChangeDate={setDate} date={date} />
-        <DiaryProduct setItem={setItem} date={dateCurrent} />
+        <DiaryProduct setItem={setItem} date={date} />
         <DiaryProductList
           products={products}
           date={date}
           onDeleteItem={deleteProduct}
         />
       </LeftSideBar>
-      <RightSideBar date={date} />
+      <RightSideBar date={date} diaryProducts={products} />
     </Container>
   );
 }

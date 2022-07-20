@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { toBackendDateString } from './utils';
+
 export const axiosInstance = axios.create({
   baseURL: 'https://goit-slim-mom-backend.herokuapp.com/api/',
 });
@@ -14,13 +16,9 @@ export const getPublicData = async values => {
 };
 
 export const getDiaryByDate = async date => {
-  // const day = date.getDate() > 9 ? date.getDate() : `0${date.getDate()}`; //додати 0, якщо день не більше 9
-  // const month = date.getMonth() > 9 ? date.getMonth() : `0${date.getMonth()}`; //додати 0, якщо місяць не більше 9
-  // const year = date.getFullYear();
-  // const dateForBackend = `${day}.${month}.${year}`;
-  const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, '.');
+  const dateForBackend = toBackendDateString(date); // new Date(date).toLocaleDateString().replace(/\./g, '.');
   try {
-    const response = await axiosInstance.get(`diary/${dateCurrent}`);
+    const response = await axiosInstance.get(`diary/${dateForBackend}`);
     return response.data.data.productList;
   } catch (error) {
     console.log('error');
@@ -28,27 +26,18 @@ export const getDiaryByDate = async date => {
 };
 
 export const deleteProductById = async (id, date) => {
-  const dateCurrent = new Date(date).toLocaleDateString().replace(/\./g, '.');
+  const dateForBackend = toBackendDateString(date); //new Date(date).toLocaleDateString().replace(/\./g, '.');
   try {
     const response = await axiosInstance({
       method: 'DELETE',
       url: `diary/${id}`,
       data: {
-        date: dateCurrent,
+        date: dateForBackend,
       },
     });
     return response.data;
   } catch (error) {
     console.log('error');
-  }
-};
-
-export async function getProductsOfDay (date) {
-  try {
-    const {data} = await axiosInstance.get(`diary/${date}`);
-    return data.data.productList;
-  } catch (error) {
-    console.log(error);
   }
 };
 
@@ -105,7 +94,9 @@ export const getProductsSearch = async search => {
 export const addProductInDiary = async values => {
   try {
     // console.log(values)
-    const response = await axiosInstance.post(`diary`, values);
+    const formattedValues = { ...values };
+    formattedValues.date = toBackendDateString(values.date);
+    const response = await axiosInstance.post(`diary`, formattedValues);
     return response.data.data;
   } catch {
     console.log('error');
