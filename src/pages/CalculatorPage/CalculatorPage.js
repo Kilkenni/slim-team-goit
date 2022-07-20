@@ -12,20 +12,27 @@ const CalculatorPage = () => {
   const [userProducts, setUserProducts] = useState(null);
   const handleFormSubmit = values => {
     async function updateUser() {
-      console.log(values);
       const response = await updateCurrentUser(values); //відправляємо дані користувача на бек
       setUserParams(response.parameters);
       setUserProducts(response.notAllowedProducts);
     }
     updateUser();
   };
+
+  const scrollWin = () => {
+    window.scrollTo({ top: 500, behavior: 'auto' });
+  };
+
   return (
     <Container>
       <div className={styles.container_calculator}>
         <h1 className={styles.container__title}>
           Розрахуйте добову норму калорій прийом прямо зараз
         </h1>
-        <DailyCaloriesForm onSumbForm={handleFormSubmit} />
+        <DailyCaloriesForm
+          onSumbForm={handleFormSubmit}
+          scrollWin={scrollWin}
+        />
       </div>
       <RightSideBar
         date={date}
