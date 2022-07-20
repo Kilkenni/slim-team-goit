@@ -47,6 +47,7 @@
   }
 }
 .inputName {
+  width: 280px;
   font-family: 'Verdana';
   font-style: normal;
   font-weight: 700;
@@ -57,9 +58,13 @@
 
   border: none;
   background-color: transparent;
-  padding: 8px 0;    
+  padding: 8px 0; 
+  @include mixins.mediaquery ("tablet", min) {
+      width: 240px;
+    }
 }
 .inputGram {
+  width: 280px;
   font-family: 'Verdana';
   font-style: normal;
   font-weight: 700;
