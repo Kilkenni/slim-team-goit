@@ -6,6 +6,7 @@ import styles from './CalculatorPage.module.scss';
 import Container from '../../components/Container';
 import Loader from '../../components/Loader';
 import { getCurrentUser, updateCurrentUser } from '../../js/backendAPI';
+import { useMediaQuery } from '../../js/hooks';
 
 const CalculatorPage = () => {
   const [date] = useState(new Date());
@@ -16,7 +17,6 @@ const CalculatorPage = () => {
   useEffect(() => {
     //do once
     async function getUserFromBd() {
-      // setIsFetching(true);
       const response = await getCurrentUser();
       const { height, age, currentWeight, desiredWeight } = response.parameters;
       if (
@@ -34,14 +34,19 @@ const CalculatorPage = () => {
     getUserFromBd();
   }, []);
 
+  const desktopSize = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue('--breakpoint-desktop');
+  const toDesktopSize = parseInt(desktopSize) - 1 + 'px';
+  const isNotDesktop = useMediaQuery(`(max-width: ${toDesktopSize})`);
+
   const updateUser = async values => {
     const response = await updateCurrentUser(values); //відправляємо дані користувача на бек
     setUserParams(response.parameters);
     setUserProducts(response.notAllowedProducts);
-  };
-
-  const scrollWin = () => {
-    window.scrollTo({ top: 500, behavior: 'auto' });
+    if (isNotDesktop) {
+      window.scrollTo({ top: 500, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -54,11 +59,7 @@ const CalculatorPage = () => {
             <h1 className={styles.container__title}>
               Розрахуйте добову норму калорій прийом прямо зараз
             </h1>
-            <DailyCaloriesForm
-              onFormSubmit={updateUser}
-              scrollWin={scrollWin}
-              {...userParams}
-            />
+            <DailyCaloriesForm onFormSubmit={updateUser} {...userParams} />
           </div>
           <RightSideBar
             date={date}

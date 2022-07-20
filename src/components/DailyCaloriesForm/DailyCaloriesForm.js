@@ -43,7 +43,6 @@ const schema = yup.object().shape({
 
 function DailyCaloriesForm({
   onFormSubmit = () => {},
-  scrollWin,
   height = '',
   age = '',
   currentWeight = '',
@@ -64,7 +63,6 @@ function DailyCaloriesForm({
       toggleModal();
     }
     await onFormSubmit(values);
-    scrollWin();
     resetForm({ values: '' });
   };
 
