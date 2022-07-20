@@ -12,7 +12,7 @@
 }
 
 .modal {
-  overflow: auto; //paskar
+  overflow: auto;
 
   width: 100%;
   height: 100%;
@@ -26,7 +26,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 672px;
-    overflow: hidden; //paskar
+    overflow: hidden;
     height: auto;
   }
 }
