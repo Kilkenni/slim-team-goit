@@ -1,4 +1,3 @@
-import React from 'react';
 import { CircleLoader } from 'react-spinners';
 
 function Loader() {

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Button from '../Button/index';
@@ -8,7 +8,6 @@ import DailyCalorieIntake from '../DailyCalorieIntake';
 import { getPublicData } from '..//../js/backendAPI';
 import { authSelectors } from '../../redux/auth';
 import { useSelector } from 'react-redux';
-import { setPrivatUserData } from '..//../js/backendAPI';
 
 import * as yup from 'yup';
 
@@ -43,7 +42,14 @@ const schema = yup.object().shape({
     .required("Обов'язкове поле"),
 });
 
-function DailyCaloriesForm({ onSumbForm }) {
+function DailyCaloriesForm({
+  onFormSubmit = () => {},
+  height = '',
+  age = '',
+  currentWeight = '',
+  desiredWeight = '',
+  bloodType = '1',
+}) {
   const [list, setList] = useState();
   const [showModal, setShowModal] = useState(false);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -52,17 +58,13 @@ function DailyCaloriesForm({ onSumbForm }) {
     setShowModal(!showModal);
   };
 
-  const submitForm = (values, { resetForm }) => {
+  const submitForm = async (values, { resetForm }) => {
     if (!isLoggedIn) {
       getPublicData(values).then(setList);
       toggleModal();
-    } else {
-      setPrivatUserData(values).then(response => {
-        return response;
-      });
     }
+    await onFormSubmit(values);
     resetForm({ values: '' });
-    onSumbForm(values);
   };
 
   return (
@@ -74,16 +76,17 @@ function DailyCaloriesForm({ onSumbForm }) {
       )}
       <Formik
         initialValues={{
-          height: '',
-          age: '',
-          currentWeight: '',
-          desiredWeight: '',
-          bloodType: '1',
+          height,
+          age,
+          currentWeight,
+          desiredWeight,
+          bloodType,
         }}
         validationSchema={schema}
         validateOnChange={true}
         validateOnBlur={false}
         onSubmit={submitForm}
+        enableReinitialize /* потрібно, щоб Formik скидав форму, коли стартові значення змінюються */
       >
         {formik => {
           const { values, handleSubmit, errors, touched, isValid, dirty } =
@@ -173,7 +176,7 @@ function DailyCaloriesForm({ onSumbForm }) {
                       name="bloodType"
                       value="1"
                       className={styles['radioItem']}
-                      checked
+                      /*checked*/
                     />
                     <span className={styles['checkmark']}></span>
                   </label>
