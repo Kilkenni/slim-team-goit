@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Button from '../Button/index';
@@ -16,34 +15,35 @@ const schema = yup.object().shape({
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(100, 'Вкажіть значення більше 100')
-    .max(250, 'Вкажіть значення до 250')
+    .max(250, 'Вкажіть значення менше 250')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
   age: yup
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(18, 'Вкажіть значення більше 18')
-    .max(100, 'Вкажіть значення до 100')
+    .max(100, 'Вкажіть значення менше 100')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
   currentWeight: yup
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(20, 'Вкажіть значення більше 20')
-    .max(500, 'Вкажіть значення до 500')
+    .max(500, 'Вкажіть значення менше 500')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
   desiredWeight: yup
     .number('Значення має бути число')
     .typeError('Введіть числове значення')
     .min(20, 'Вкажіть значення більше 20')
-    .max(500, 'Вкажіть значення до 500')
+    .max(500, 'Вкажіть значення менше 500')
     .integer('Значення має бути ціле число')
     .required("Обов'язкове поле"),
 });
 
 function DailyCaloriesForm({
   onFormSubmit = () => {},
+  scrollWin,
   height = '',
   age = '',
   currentWeight = '',
@@ -64,11 +64,12 @@ function DailyCaloriesForm({
       toggleModal();
     }
     await onFormSubmit(values);
+    scrollWin();
     resetForm({ values: '' });
   };
 
   return (
-    <Fragment>
+    <>
       {showModal && list && (
         <Modal onClose={toggleModal}>
           <DailyCalorieIntake foodsList={list} onClose={toggleModal} />
@@ -226,7 +227,7 @@ function DailyCaloriesForm({
           );
         }}
       </Formik>
-    </Fragment>
+    </>
   );
 }
 

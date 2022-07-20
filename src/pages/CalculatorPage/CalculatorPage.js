@@ -40,6 +40,10 @@ const CalculatorPage = () => {
     setUserProducts(response.notAllowedProducts);
   };
 
+  const scrollWin = () => {
+    window.scrollTo({ top: 500, behavior: 'auto' });
+  };
+
   return (
     <Fragment>
       {isFetching ? (
@@ -50,7 +54,11 @@ const CalculatorPage = () => {
             <h1 className={styles.container__title}>
               Розрахуйте добову норму калорій прийом прямо зараз
             </h1>
-            <DailyCaloriesForm onFormSubmit={updateUser} {...userParams} />
+            <DailyCaloriesForm
+              onFormSubmit={updateUser}
+              scrollWin={scrollWin}
+              {...userParams}
+            />
           </div>
           <RightSideBar
             date={date}
