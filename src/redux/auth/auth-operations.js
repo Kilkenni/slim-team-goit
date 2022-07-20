@@ -15,7 +15,6 @@ const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const axiosResponse = await axiosInstance.post('/auth/signup', credentials);
 
-    // token.set(axiosResponse.data.data.accessToken);
     toast.success(`Ви успішно зареєструвалися! Тепер можете увійти.`);
     return axiosResponse.data;
   } catch (error) {    
@@ -35,7 +34,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const axiosResponse = await axiosInstance.post('/auth/login', credentials);
 
-    token.set(axiosResponse.data.data.accessToken);
+    token.set(axiosResponse.data.data.token);
     return axiosResponse.data.data;
   } catch (error) {
     if (error.response.status === 403) {
@@ -55,7 +54,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axiosInstance.post('/auth/logout');
+  await axiosInstance.post('/auth/logout');
     token.unset();
   } catch (error) {
    

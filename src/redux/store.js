@@ -25,7 +25,7 @@ import productsReducer from './products/products-reducer';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'refreshToken'],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
