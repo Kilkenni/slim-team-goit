@@ -12,46 +12,65 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('auth/register', async (credentials,{ rejectWithValue }) => {
-  try {
-    const axiosResponse = await axiosInstance.post('/auth/signup', credentials);
+const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, { rejectWithValue, dispatch }) => {
+    try {
+      const axiosResponse = await axiosInstance.post(
+        '/auth/signup',
+        credentials
+      );
+      dispatch(
+        logIn({ email: credentials.email, password: credentials.password })
+      );
 
-    toast.success(`Ви успішно зареєструвалися! Тепер можете увійти.`);
-    return axiosResponse.data;
-  } catch (error) {
-    if (error.response.status === 400) {
-      return rejectWithValue(toast.error('Поганий запит'));
-    }
-    if (error.response.status === 409) {
-      return rejectWithValue(toast.error('Електронна пошта вже використовується'));
-    }
-    if (error.response.status === 500) {
-      return rejectWithValue(toast.error('Внутрішня помилка сервера'));
+      toast.success(`Вітаємо! Ви успішно зареєструвалися! `);
+      return axiosResponse.data;
+    } catch (error) {
+      if (error.response.status === 400) {
+        return rejectWithValue(toast.error('Поганий запит'));
+      }
+      if (error.response.status === 409) {
+        return rejectWithValue(
+          toast.error('Електронна пошта вже використовується')
+        );
+      }
+      if (error.response.status === 500) {
+        return rejectWithValue(toast.error('Внутрішня помилка сервера'));
+      }
     }
   }
-});
+);
 
-const logIn = createAsyncThunk('auth/login', async (credentials,{ rejectWithValue }) => {
-  try {
-    const axiosResponse = await axiosInstance.post('/auth/login', credentials);
+const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const axiosResponse = await axiosInstance.post(
+        '/auth/login',
+        credentials
+      );
 
-    token.set(axiosResponse.data.data.token);
-    return axiosResponse.data.data;
-  } catch (error) {
-    if (error.response.status === 403) {
-      return rejectWithValue(toast.error('Неправильна електронна адреса або пароль'));
-    }
-    if (error.response.status === 400) {
-      return rejectWithValue(toast.error('Поганий запит'));
-    }
-    if (error.response.status === 404) {
-      return rejectWithValue(toast.error('Не знайдено'));
-    }
-    if (error.response.status === 500) {
-      return rejectWithValue(toast.error('Внутрішня помилка сервера'));
+      token.set(axiosResponse.data.data.token);
+      return axiosResponse.data.data;
+    } catch (error) {
+      if (error.response.status === 403) {
+        return rejectWithValue(
+          toast.error('Неправильна електронна адреса або пароль')
+        );
+      }
+      if (error.response.status === 400) {
+        return rejectWithValue(toast.error('Поганий запит'));
+      }
+      if (error.response.status === 404) {
+        return rejectWithValue(toast.error('Не знайдено'));
+      }
+      if (error.response.status === 500) {
+        return rejectWithValue(toast.error('Внутрішня помилка сервера'));
+      }
     }
   }
-});
+);
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
