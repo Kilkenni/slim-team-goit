@@ -13,9 +13,6 @@ import ModalHeader from '../ModalHeader';
 import sprite from './sprite.svg';
 
 export default function Header() {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const [showModal, setShowModal] = useState(false);
 
@@ -38,13 +35,7 @@ export default function Header() {
       <div className={styles.top}>
         <Logo />
         {isLoggedIn && isDesktop && <Navigation />}
-        {isLoggedIn ? (
-          !isMobile && <UserMenu />
-        ) : (
-          // location.pathname !== '/login' &&
-          // location.pathname !== '/register' &&
-          <AuthNavigation />
-        )}
+        {isLoggedIn ? !isMobile && <UserMenu /> : <AuthNavigation />}
         {!isDesktop && isLoggedIn && (
           <button type="button" className={styles.button} onClick={toggleModal}>
             <svg alt="menu icon" width="24" height="24" className={styles.icon}>

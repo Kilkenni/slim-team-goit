@@ -1,11 +1,11 @@
 import { createPortal } from "react-dom";
-import styles from "./ModalHeader.module.scss";
 import { useEffect } from "react";
 import { useMediaQuery } from "../../js/hooks";
-import btnClose from "./btnClose.svg";
 import Logo from "../Logo"
 import Navigation from '../Navigation';
 import UserMenu from "../UserMenu";
+import btnClose from "./btnClose.svg";
+import styles from "./ModalHeader.module.scss";
 
 const modalRoot = document.querySelector("#modal-root");
 
