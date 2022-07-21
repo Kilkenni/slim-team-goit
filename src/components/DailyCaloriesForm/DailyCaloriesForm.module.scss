@@ -110,8 +110,10 @@ label input:checked ~ .checkmark {
 
 .subtitle-error {
   position: absolute;
-  color: red;
-  font-size: 1rem;
+  color: var(--accent-main);
+  font-weight: normal;
+  // color: red;
+  // font-size: 1rem;
   margin-top: 5px;
 }
 
@@ -119,5 +121,6 @@ label input:checked ~ .checkmark {
   box-sizing: border-box;
   padding: 8px 0;
   width: 100%;
-  border-color: red;
+  border-color: var(--accent-main);
+  // border-color: red;
 }

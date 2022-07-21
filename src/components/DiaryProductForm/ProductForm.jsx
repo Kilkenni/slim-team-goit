@@ -89,8 +89,8 @@ import debounce from 'lodash/debounce';
             onChange={handleInputChange}
             placeholder="Грами"
           />
-          <span className={s.messageNumber}>{errors.number?.type === "required" && 'Поле має бути заповнене'}</span>
-          <span className={s.messageNumber}>{errors.number?.type === "min" && "Введіть додатнє значення"}</span>
+          <span className={s.messageNumber}>{errors.number?.type === "required" && 'Введіть дані'}</span>
+          <span className={s.messageNumber}>{errors.number?.type === "min" && "Невірне значення"}</span>
         </label>
         <button type='submit' className={s.button}>
           <p className={s.add}>Додати</p>

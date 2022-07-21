@@ -107,7 +107,9 @@
 }
 
 .error {
-    color: red;
+    font-weight: normal;
+    color: var(--accent-main);
+    
 }
 
 //current style button
