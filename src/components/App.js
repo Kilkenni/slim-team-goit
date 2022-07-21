@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CircleLoader } from 'react-spinners';
 import { authOperations, authSelectors } from '../redux/auth';
 import { Navigate } from 'react-router-dom';
 import Layout from './Layout';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import RegisterRoute from './RegisterRoute';
+import Loader from './Loader';
 import './App.module.scss'; //required for usable CSS variables on first render with React lazy()
 
 const MainPage = lazy(() =>
@@ -35,15 +35,6 @@ function App() {
   }, [dispatch]);
 
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-
-  const accentColor = getComputedStyle(
-    document.documentElement
-  ).getPropertyValue('--accent-main');
-  const loaderCSSOverride = {
-    marginTop: '100px',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  };
 
   return (
     <Routes>
@@ -93,16 +84,7 @@ function App() {
           />
         </Route>
       ) : (
-        <Route
-          path="*"
-          element={
-            <CircleLoader
-              color={accentColor}
-              size={150}
-              cssOverride={loaderCSSOverride}
-            />
-          }
-        ></Route>
+        <Route path="*" element={<Loader />}></Route>
       )}
     </Routes>
   );

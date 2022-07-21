@@ -1,5 +1,3 @@
-
-// import PropTypes from 'prop-types';
 import DiaryProductItem from '../DiaryProductItem/DiaryProductItem';
 import s from './DiaryProductList.module.scss';
 
@@ -23,17 +21,4 @@ export default function DiaryProductList({ date, products, onDeleteItem }) {
     </div>
   );
 }
-
-
-// DiaryProductList.propTypes = {
-//   onDeleteContact: PropTypes.func.isRequired,
-//   products: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string,
-//       calory: PropTypes.string,
-//     })
-//   ),
-// };
 

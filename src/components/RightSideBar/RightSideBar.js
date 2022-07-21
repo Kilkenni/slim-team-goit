@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './RightSideBar.module.scss';
 import { getCurrentUser, getDiaryByDate } from '../../js/backendAPI';
-
 import { toBackendDateString } from '../../js/utils';
 
 export default function RightSideBar({

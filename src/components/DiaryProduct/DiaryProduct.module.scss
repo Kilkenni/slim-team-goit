@@ -63,13 +63,6 @@
     margin: auto;
     margin-top: 60px;
     cursor: pointer;  
-    // @include mixins.mediaquery ("tablet", min) {
-    //   align-items: center;
-    //   width: 48px;
-    //   height: 48px; 
-    //   border-radius: 50%;
-    //   padding: 0 0 2px 0;
-    // }  
 }
 .plus {
     display: flex;
