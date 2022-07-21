@@ -10,8 +10,8 @@ export const getPublicData = async values => {
   try {
     const response = await axiosInstance.post('products', values);
     return response.data.data;
-  } catch {
-    console.log('error');
+  } catch (error) {
+    console.error(error);
   }
 };
 
