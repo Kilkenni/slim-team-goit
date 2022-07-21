@@ -41,6 +41,13 @@ const schema = yup.object().shape({
     .required("Обов'язкове поле"),
 });
 
+const bloodTypes = [
+  {title: "I", value: '1'},
+  {title: "II", value: '2'}, 
+  {title: "III", value: '3'},
+  {title: "IV", value: '4'}
+]
+
 function DailyCaloriesForm({
   onFormSubmit = () => {},
   height = '',
@@ -168,47 +175,20 @@ function DailyCaloriesForm({
                   aria-labelledby="blood-group"
                   className={styles['radio']}
                 >
-                  <label>
-                    I
+
+                  {bloodTypes.map(({title, value}) => 
+                    <label key={value}>
+                    {title}
                     <Field
                       type="radio"
                       name="bloodType"
-                      value="1"
+                      value={value}
                       className={styles['radioItem']}
                       /*checked*/
                     />
                     <span className={styles['checkmark']}></span>
-                  </label>
-                  <label>
-                    II
-                    <Field
-                      type="radio"
-                      name="bloodType"
-                      value="2"
-                      className={styles['radioItem']}
-                    />
-                    <span className={styles['checkmark']}></span>
-                  </label>
-                  <label>
-                    III
-                    <Field
-                      type="radio"
-                      name="bloodType"
-                      value="3"
-                      className={styles['radioItem']}
-                    />
-                    <span className={styles['checkmark']}></span>
-                  </label>
-                  <label>
-                    IV
-                    <Field
-                      type="radio"
-                      name="bloodType"
-                      value="4"
-                      className={styles['radioItem']}
-                    />
-                    <span className={styles['checkmark']}></span>
-                  </label>
+                  </label>)}
+                  
                 </div>
               </div>
 
