@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors } from '../../redux/auth';
+import { authSelectors, authOperations } from '../../redux/auth';
 import ModalAlert from '../ModalAlert';
 import styles from './UserMenu.module.scss';
 
