@@ -1,5 +1,6 @@
 import React from "react";
 import Datetime from "react-datetime";
+import moment from 'moment';
 import "react-datetime/css/react-datetime.css";
 import styles from './DiaryDateCalendar.module.scss'
 import { ReactComponent as Calendar } from "./calendar.svg";
@@ -14,8 +15,12 @@ export default class MyDTPicker extends React.Component {
         this.props.onChangeDate(event._d);
     }
 
+    yesterday = moment().subtract( 1, 'day' );
+    valid = function( current ){
+        return current.isBefore ( this.yesterday );
+    };
     render(){
-        return <Datetime renderInput={ this.renderInput } onChange={this.onChangeDate} value={this.props.date} dateFormat="DD.MM.YYYY" timeFormat={false}/>;
+        return <Datetime renderInput={ this.renderInput } isValidDate={ this.valid } onChange={this.onChangeDate} value={this.props.date} dateFormat="DD.MM.YYYY" timeFormat={false}/>;
     }
 
     renderInput( props, openCalendar ){
