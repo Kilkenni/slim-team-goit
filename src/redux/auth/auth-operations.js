@@ -12,7 +12,7 @@ const token = {
   },
 };
 
-const register = createAsyncThunk('auth/register', async credentials => {
+const register = createAsyncThunk('auth/register', async (credentials,{ rejectWithValue }) => {
   try {
     const axiosResponse = await axiosInstance.post('/auth/signup', credentials);
 
@@ -20,18 +20,18 @@ const register = createAsyncThunk('auth/register', async credentials => {
     return axiosResponse.data;
   } catch (error) {
     if (error.response.status === 400) {
-      toast.error('Поганий запит');
+      return rejectWithValue(toast.error('Поганий запит'));
     }
     if (error.response.status === 409) {
-      toast.error('Електронна пошта вже використовується');
+      return rejectWithValue(toast.error('Електронна пошта вже використовується'));
     }
     if (error.response.status === 500) {
-      toast.error('Внутрішня помилка сервера');
+      return rejectWithValue(toast.error('Внутрішня помилка сервера'));
     }
   }
 });
 
-const logIn = createAsyncThunk('auth/login', async credentials => {
+const logIn = createAsyncThunk('auth/login', async (credentials,{ rejectWithValue }) => {
   try {
     const axiosResponse = await axiosInstance.post('/auth/login', credentials);
 
@@ -39,16 +39,16 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     return axiosResponse.data.data;
   } catch (error) {
     if (error.response.status === 403) {
-      toast.error('Неправильна електронна адреса або пароль');
+      return rejectWithValue(toast.error('Неправильна електронна адреса або пароль'));
     }
     if (error.response.status === 400) {
-      toast.error('Поганий запит');
+      return rejectWithValue(toast.error('Поганий запит'));
     }
     if (error.response.status === 404) {
-      toast.error('Не знайдено');
+      return rejectWithValue(toast.error('Не знайдено'));
     }
     if (error.response.status === 500) {
-      toast.error('Внутрішня помилка сервера');
+      return rejectWithValue(toast.error('Внутрішня помилка сервера'));
     }
   }
 });
