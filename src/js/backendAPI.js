@@ -73,14 +73,14 @@ export async function updateCurrentUser({
   }
 }
 
-export const setPrivatUserData = async values => {
-  try {
-    const response = await axiosInstance.put('users', values);
-    return response.data.data;
-  } catch {
-    console.log('error');
-  }
-};
+// export const setPrivatUserData = async values => {
+//   try {
+//     const response = await axiosInstance.put('users', values);
+//     return response.data.data;
+//   } catch {
+//     console.log('error');
+//   }
+// };
 
 export const getProductsSearch = async search => {
   try {
